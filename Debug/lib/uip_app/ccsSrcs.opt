@@ -1,0 +1,1 @@
+"../lib/uip_app/dhcpc.c" "../lib/uip_app/http-strings.c" "../lib/uip_app/httpd.c" "../lib/uip_app/protocol_switcher_app.c" "../lib/uip_app/resolv.c" "../lib/uip_app/siemensTCP_app.c" "../lib/uip_app/special_server.c" "../lib/uip_app/ssdp.c" "../lib/uip_app/telnet_client.c" "../lib/uip_app/udp_frame.c" "../lib/uip_app/webclient.c" 
