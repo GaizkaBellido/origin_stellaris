@@ -65,6 +65,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "libMU/serie.h"
+
 #define STATE_WAITING 0
 #define STATE_OUTPUT  1
 
@@ -77,7 +79,7 @@
 #define ISO_slash   0x2f
 #define ISO_colon   0x3a
 
-char	httpd_script_param[200];
+char	httpd_script_param[400];
 
 /*---------------------------------------------------------------------------*/
 static unsigned short
@@ -290,6 +292,7 @@ PT_THREAD(handle_input(struct httpd_state *s))
 				if( content_length > sizeof( httpd_script_param ) ) content_length = sizeof( httpd_script_param ) - 1;
 				strncpy( httpd_script_param, (const char*)s->sin.readptr, content_length );
 				httpd_script_param[ content_length ] = 0;
+				libMU_Serial_SendString(httpd_script_param);
 			}
 			if( !content_length && strncmp(s->inputbuf, http_content_length, sizeof(http_content_length)-1 ) == 0) {
 				content_length = atoi( s->inputbuf + sizeof(http_content_length) - 1 );

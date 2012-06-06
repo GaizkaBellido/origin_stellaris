@@ -53,7 +53,7 @@ struct httpd_state {
   unsigned short count;
 };
 
-extern char	httpd_script_param[200];
+extern char	httpd_script_param[400];
 
 void httpd_init(void);
 void httpd_appcall(void);

@@ -50,7 +50,7 @@ typedef unsigned short uip_stats_t;
 #define UIP_CONF_UDP_CONNS          4
 
 // Maximum number of TCP connections.
-#define UIP_CONF_MAX_CONNECTIONS    4
+#define UIP_CONF_MAX_CONNECTIONS    6
 
 // Maximum number of listening TCP ports.
 #define UIP_CONF_MAX_LISTENPORTS    4

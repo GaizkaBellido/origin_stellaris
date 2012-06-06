@@ -295,16 +295,17 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 	char params_copy[100];
 	int length = 0;
 	
-	length = *len;	
-	memcpy(params_copy, cmd_param, length);
+	//length = *len;	
+	//memcpy(params_copy, cmd_param, length);
 	//libMU_Serial_SendString(cmd_param);
 	//libMU_Serial_SendString("\r\n");
 	//libMU_Serial_SendString(params_copy);
 	/* Debug info */
 	calls++;	
 
+	libMU_Serial_SendString(cmd_param);
 	/* Incorrectly formated cmd_param */
-	if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
+	//if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
 
 	/* Process cmd_param (NOTE: Case is NOT ignored)*/
 /*	

@@ -77,8 +77,8 @@ void ssdp_advertise(void)
 				"06227070-4286-0000-00");
                
 	if(upd_conex != NULL) {
-		libMU_Serial_SendString("\nEnviando ssdp_advertise()\n");
-		libMU_Serial_SendString(ssdp);
+		//libMU_Serial_SendString("\nEnviando ssdp_advertise()\n");
+		//libMU_Serial_SendString(ssdp);
 		uip_send(ssdp, len);
 	}else{
 		//libMU_Serial_SendString("Error1: imposible abrir conexion!\n");
