@@ -340,7 +340,7 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 				libMU_LED_Toggle(LED_1);
 		}
 	}
-	/**/
+
 	
 	/* Buscamos u:SetPower */
 	found = strstr(cmd_param,"u:GetPower");
