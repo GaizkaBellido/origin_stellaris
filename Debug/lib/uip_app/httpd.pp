@@ -33,10 +33,10 @@ lib/uip_app/httpd.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/
 lib/uip_app/httpd.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/http-strings.h
 lib/uip_app/httpd.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/udp_frame.h
 lib/uip_app/httpd.obj: ../lib/uip_app/http-strings.h
+lib/uip_app/httpd.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/serie.h
 lib/uip_app/httpd.obj: C:/TI/ccsv4/tools/compiler/tms470/include/string.h
 lib/uip_app/httpd.obj: C:/TI/ccsv4/tools/compiler/tms470/include/linkage.h
 lib/uip_app/httpd.obj: C:/TI/ccsv4/tools/compiler/tms470/include/stdlib.h
-lib/uip_app/httpd.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/serie.h
 
 ../lib/uip_app/httpd.c: 
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip/uip.h: 
@@ -71,7 +71,7 @@ C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/webclient.h:
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/http-strings.h: 
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/uip_app/udp_frame.h: 
 ../lib/uip_app/http-strings.h: 
+C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/serie.h: 
 C:/TI/ccsv4/tools/compiler/tms470/include/string.h: 
 C:/TI/ccsv4/tools/compiler/tms470/include/linkage.h: 
 C:/TI/ccsv4/tools/compiler/tms470/include/stdlib.h: 
-C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/serie.h: 

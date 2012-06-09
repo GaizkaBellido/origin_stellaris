@@ -50,10 +50,10 @@ struct httpd_state {
   char *scriptptr;
   int scriptlen;
   
-  unsigned short count;
+  unsigned int count;
 };
 
-extern char	httpd_script_param[400];
+extern char	httpd_script_param[200];
 
 void httpd_init(void);
 void httpd_appcall(void);

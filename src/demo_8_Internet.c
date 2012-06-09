@@ -295,6 +295,10 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 	char params_copy[100];
 	int length = 0;
 	
+	memcpy( params_copy, cmd_param, 21 ); 
+	params_copy[21] = 0;
+	libMU_Display_DrawString( params_copy, 0, 81, 10 );
+	
 	//length = *len;	
 	//memcpy(params_copy, cmd_param, length);
 	//libMU_Serial_SendString(cmd_param);
@@ -303,7 +307,7 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 	/* Debug info */
 	calls++;	
 
-	libMU_Serial_SendString(cmd_param);
+	//libMU_Serial_SendString(cmd_param);
 	/* Incorrectly formated cmd_param */
 	//if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
 
@@ -334,10 +338,10 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 		found = strstr(cmd_param,"<Power>");
 		if(found){
 				found = found + 5;
-				libMU_Serial_SendString("Set Encontrado: ");
-				libMU_Serial_SendChar(found-1);
-				libMU_Serial_SendChar(found);
-				libMU_Serial_SendChar(found+1);
+//				libMU_Serial_SendString("Set Encontrado: ");
+//				libMU_Serial_SendChar(found-1);
+//				libMU_Serial_SendChar(found);
+//				libMU_Serial_SendChar(found+1);
 				libMU_LED_Toggle(LED_1);
 		}
 	}
@@ -350,10 +354,10 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 		found = strstr(cmd_param,"<Power>");
 		if(found){
 				found = found + 5;
-				libMU_Serial_SendString("Get Encontrado: ");
-				libMU_Serial_SendChar(found-1);
-				libMU_Serial_SendChar(found);
-				libMU_Serial_SendChar(found+1);
+//				libMU_Serial_SendString("Get Encontrado: ");
+//				libMU_Serial_SendChar(found-1);
+//				libMU_Serial_SendChar(found);
+//				libMU_Serial_SendChar(found+1);
 		}	
 	}
 
