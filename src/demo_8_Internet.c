@@ -22,6 +22,7 @@
 #include <libMU/analogico_digital.h>
 #include <libMU/temperatura.h>
 #include <libMU/leds.h>
+#include "lib/dibujar_grafica/dibujar_grafica.h"
 
 
 /**
@@ -197,6 +198,14 @@ static void ProgramaPrincipal(void *param)
 		"Esperando IP.. ",
 		"Esperando IP..."
 	};
+	
+/*Inicio Codigo de ADC */
+	unsigned long pesoActual = 0;
+	unsigned long aux = 0;
+	unsigned long pesoAnterior = 0;
+	char strAct[20];
+	int temperatura;
+/* Fin Codigo de ADC */
 
 	/* Configuraci√≥n del servidor WEB */
 	libMU_Internet_Server_SetPage( "/device.xml", device_descriptor, sizeof(device_descriptor) );  
@@ -270,6 +279,17 @@ static void ProgramaPrincipal(void *param)
 					strncpy( &respuesta_temp[49], &msg[2], 4 );
 				}
 				
+/*Inicio Codigo de ADC */
+				temperatura = libMU_Temperature_Get();
+				aux = pesoAnterior;
+				pesoAnterior = pesoActual;
+				pesoActual = temperatura - 300 + 30;
+		
+				sprintf(strAct,"%lu", pesoActual); //Guarda en str, el valor que est· en ADC_Values[0] (que es long unsigned int (lu))
+				RIT128x96x4StringDraw("Mostrando peso: ", 3, 5, 15);
+				RIT128x96x4StringDraw(strAct, 95, 5, 15);
+				dibujar_estadistica(pesoActual);
+/* Fin Codigo de ADC */
 			case NETWORK_ERROR:
 			default:
 				libMU_Display_DrawString( "Error!!!   ", 0, 8, 15 );

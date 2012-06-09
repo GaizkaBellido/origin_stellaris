@@ -21,6 +21,7 @@ src/demo_8_Internet.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/cron
 src/demo_8_Internet.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/analogico_digital.h
 src/demo_8_Internet.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/temperatura.h
 src/demo_8_Internet.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/leds.h
+src/demo_8_Internet.obj: C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/dibujar_grafica/dibujar_grafica.h
 
 ../src/demo_8_Internet.c: 
 C:/TI/ccsv4/tools/compiler/tms470/include/stdint.h: 
@@ -43,3 +44,4 @@ C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/cronometro.h:
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/analogico_digital.h: 
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/temperatura.h: 
 C:/Users/Spook/Documents/workspace/UPnP_SSDP/libMU/leds.h: 
+C:/Users/Spook/Documents/workspace/UPnP_SSDP/lib/dibujar_grafica/dibujar_grafica.h: 

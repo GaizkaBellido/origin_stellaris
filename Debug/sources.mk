@@ -111,6 +111,7 @@ lib/uip_app \
 lib/uip \
 lib/drivers \
 lib/driverlib \
+lib/dibujar_grafica \
 lib/FreeRTOS \
 lib/FreeRTOS/portable/MemMang \
 lib/FreeRTOS/portable/CCS4/ARM_CM3 \
