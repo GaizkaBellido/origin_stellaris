@@ -50,10 +50,13 @@ struct httpd_state {
   char *scriptptr;
   int scriptlen;
   
+  char state_post;
   unsigned int count;
 };
 
-extern char	httpd_script_param[200];
+#define	HTTPD_SCRIPT_SIZE		4096
+
+extern char	httpd_script_param[HTTPD_SCRIPT_SIZE];
 
 void httpd_init(void);
 void httpd_appcall(void);

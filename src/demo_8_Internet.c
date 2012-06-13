@@ -22,15 +22,15 @@
 #include <libMU/analogico_digital.h>
 #include <libMU/temperatura.h>
 #include <libMU/leds.h>
+#include "uip.h"
 
 /**
  * Funciones locales
  */
 static void		ProgramaPrincipal(void *param);
-static char*	Internet_ProcesamientoDeFormulario( const char* tag, int* len );
 static void 	Internet_ProcesamientoDePagina( char* data, unsigned short int len ) ;
-static char*	Internet_Procesamiento_control( const char* tag, int* len );
-static char*	Internet_Procesamiento_eventSub( const char* tag, int* len );
+static char*	Internet_Procesamiento_control( const char* tag, int* len, char* name );
+static char*	Internet_Procesamiento_eventSub( const char* tag, int* len, char* name );
 
 /**
  * Variables locales (datos de la página leída)
@@ -42,30 +42,7 @@ static int bytes_recibidos;
 /**
  * Variables locales (paginas Web del servidor)
  */
-static char respuesta_datos[100] =
-	"<html><body>Tenperatura = 10.0 <br>"
-	"</body></html>"
-;
-static char respuesta_temp[100] = "\n"
-	"Esto es una prueba de temperatura\n"
-	"Temperatura = 10.0 C\n"
-;
-static char respuesta_form[] =
-	"<html><body>Tenperatura = 10.0 / LED = OFF<br>"
-	"<form method=GET name=scrMsg action=cmd.html>"
-	"Message:<input type=text name=msg value=\"Hey\" size=10 maxlength=10 />"
-	"<input type=submit value=\"Send Screen Message\" /><br/>"
-	"Position: (x=<input name=x value=\"0\" size=3 maxlength=3 />,"
-	"y=<input name=y value=\"8\" size=3 maxlength=3 />)"
-	"Gray intensity: <input name=col value=\"8\" size=2 maxlength=2 /><br />"
-	"</form>"
-	"<form method=GET name=ledMsg action=cmd.html>"
-	"<input type=hidden name=led value=toggle />"
-	"<input type=submit value=\"Toggle LED\" /></form>"
-	"</body></html>"
-;
-
-	char device_descriptor[] = 
+const char device_descriptor[] = 
 	"<?xml version=\"1.0\" ?>"
 	"<root xmlns=\"urn:schemas-upnp-org:device-1-0\">"
 	"	<specVersion>"
@@ -105,7 +82,7 @@ static char respuesta_form[] =
 	"	</device>"
 	"</root>";
 	
-char services_descriptor[] = 
+const char services_descriptor[] = 
 	"<?xml version=\"1.0\"?>"
 	"<scpd xmlns=\"urn:schemas-upnp-org:service-1-0\" >"
 	"	<specVersion>"
@@ -163,7 +140,7 @@ char services_descriptor[] =
 /**
  * Programa principal
  */
-int main_demo_8(void)
+int main(void)
 {
 	libMU_Display_Initialize();
 	libMU_Serial_Initialize(115200);
@@ -198,13 +175,10 @@ static void ProgramaPrincipal(void *param)
 	};
 
 	/* Configuración del servidor WEB */
-	libMU_Internet_Server_SetPage( "/device.xml", device_descriptor, sizeof(device_descriptor) );  
-	libMU_Internet_Server_SetPage( "/services.xml", services_descriptor, sizeof(services_descriptor) );
+	libMU_Internet_Server_SetPage( "/device.xml", (char*)device_descriptor, sizeof(device_descriptor) );  
+	libMU_Internet_Server_SetPage( "/services.xml", (char*)services_descriptor, sizeof(services_descriptor) );
 	libMU_Internet_Server_SetCommandProcessingInfo( "/service/power/control", Internet_Procesamiento_control );
 	libMU_Internet_Server_SetCommandProcessingInfo( "/service/power/eventSub", Internet_Procesamiento_eventSub );
-	
-	libMU_Internet_Server_SetPage( "/form.html", respuesta_form, sizeof(respuesta_form) );
-	libMU_Internet_Server_SetCommandProcessingInfo( "/cmd.html", Internet_ProcesamientoDeFormulario );
 	
 	for(;;) {
 		switch( libMU_Internet_GetStatus() ) {
@@ -220,37 +194,37 @@ static void ProgramaPrincipal(void *param)
 							libMU_IP_1( ip ), libMU_IP_2( ip ), 
 							libMU_IP_3( ip ), libMU_IP_4( ip ) );
 				libMU_Display_DrawString( msg, 0, 0, 12 );
-				ip = libMU_Internet_GetWiFiRouterIP();
-				if( ip != 0 ) {
-					snprintf( msg, sizeof(msg), "WF<%d.%d.%d.%d>    ",
-								libMU_IP_1( ip ), libMU_IP_2( ip ), 
-								libMU_IP_3( ip ), libMU_IP_4( ip ) );
-					libMU_Display_DrawString( msg, 0, 0, 15 );
-				}
-				libMU_Internet_DNS_resolution( "www.worldtimeserver.com", &ip, 10000 );
-				libMU_Display_DrawString( "worldtimeserver.com", 0, 8, 12 );
-				snprintf( msg, sizeof(msg), "  <%d.%d.%d.%d>",
-							libMU_IP_1( ip ), libMU_IP_2( ip ), 
-							libMU_IP_3( ip ), libMU_IP_4( ip ) );
-				libMU_Display_DrawString( msg, 0, 16, 15 );
-				libMU_Internet_Delay( 1000 );
-				res = libMU_Internet_GetPage ( 
-							"http://www.worldtimeserver.com/mobile/mobile_time_in_ES.aspx?city=Madrid",
-							Internet_ProcesamientoDePagina	/* Función llamada por cada trozo de página recibida */
-						);
-				if( !res ) {
-					libMU_Display_DrawString( "Error de conexion", 0, 24, 15 );
-					return;
-				}
-				libMU_Stopwatch_Start(&t);
-				while( !libMU_Internet_IsPageReadingFinished() ) {
-					snprintf( msg, sizeof(msg), "Bytes rcvd:% 6d", bytes_recibidos );
-					libMU_Display_DrawString( msg, 0, 24, 15 );
-					libMU_Internet_Delay( 100 );
-				}
-				snprintf( msg, sizeof(msg), "Hora = %d:%02d", hora, minutos );
-				libMU_Display_DrawString( msg, 0, 32, 15 );
-				
+//				ip = libMU_Internet_GetWiFiRouterIP();
+//				if( ip != 0 ) {
+//					snprintf( msg, sizeof(msg), "WF<%d.%d.%d.%d>    ",
+//								libMU_IP_1( ip ), libMU_IP_2( ip ), 
+//								libMU_IP_3( ip ), libMU_IP_4( ip ) );
+//					libMU_Display_DrawString( msg, 0, 0, 15 );
+//				}
+//				libMU_Internet_DNS_resolution( "www.worldtimeserver.com", &ip, 10000 );
+//				libMU_Display_DrawString( "worldtimeserver.com", 0, 8, 12 );
+//				snprintf( msg, sizeof(msg), "  <%d.%d.%d.%d>",
+//							libMU_IP_1( ip ), libMU_IP_2( ip ), 
+//							libMU_IP_3( ip ), libMU_IP_4( ip ) );
+//				libMU_Display_DrawString( msg, 0, 16, 15 );
+//				libMU_Internet_Delay( 1000 );
+//				res = libMU_Internet_GetPage ( 
+//							"http://www.worldtimeserver.com/mobile/mobile_time_in_ES.aspx?city=Madrid",
+//							Internet_ProcesamientoDePagina	/* Función llamada por cada trozo de página recibida */
+//						);
+//				if( !res ) {
+//					libMU_Display_DrawString( "Error de conexion", 0, 24, 15 );
+//					return;
+//				}
+//				libMU_Stopwatch_Start(&t);
+//				while( !libMU_Internet_IsPageReadingFinished() ) {
+//					snprintf( msg, sizeof(msg), "Bytes rcvd:% 6d", bytes_recibidos );
+//					libMU_Display_DrawString( msg, 0, 24, 15 );
+//					libMU_Internet_Delay( 100 );
+//				}
+//				snprintf( msg, sizeof(msg), "Hora = %d:%02d", hora, minutos );
+//				libMU_Display_DrawString( msg, 0, 32, 15 );
+//				
 				// Deja solo el servidor web en marcha
 				for(;;) {
 					libMU_Internet_Delay( 100 );
@@ -263,10 +237,17 @@ static void ProgramaPrincipal(void *param)
 					snprintf( msg, sizeof(msg), "T:%d.%d  ", 
 						 (t/10), (t%10) );
 					libMU_Display_DrawString( msg, 0, 48, 15 );
-					/* update info */
-					strncpy( &respuesta_datos[26], &msg[2], 4 );
-					strncpy( &respuesta_form[26], &msg[2], 4 );
-					strncpy( &respuesta_temp[49], &msg[2], 4 );
+					
+					snprintf( msg, sizeof(msg), "P:%d, %d/%d C:%d", uip_conns[0].rport, 
+							  uip_conns[0].appstate.state,
+							  uip_conns[0].appstate.state_post, 
+							  uip_conns[0].appstate.count );
+					libMU_Display_DrawString( msg, 0, 8, 12 );
+					snprintf( msg, sizeof(msg), "P:%d, %d/%d C:%d", uip_conns[1].rport, 
+							  uip_conns[1].appstate.state,
+							  uip_conns[1].appstate.state_post, 
+							  uip_conns[1].appstate.count );
+					libMU_Display_DrawString( msg, 0, 16, 12 );
 				}
 				
 			case NETWORK_ERROR:
@@ -288,12 +269,10 @@ static void ProgramaPrincipal(void *param)
  * - Si se devuelve NULL el servidor no responde nada
  * @see libMU_Internet_Server_SetCommandProcessingInfo()
  */
-static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
+static char* Internet_Procesamiento_control( const char* cmd_param, int* len, char* name )
 {
-	static int calls = 0;
 	char * found;
 	char params_copy[100];
-	int length = 0;
 	
 	memcpy( params_copy, cmd_param, 21 ); 
 	params_copy[21] = 0;
@@ -305,7 +284,6 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 	//libMU_Serial_SendString("\r\n");
 	//libMU_Serial_SendString(params_copy);
 	/* Debug info */
-	calls++;	
 
 	//libMU_Serial_SendString(cmd_param);
 	/* Incorrectly formated cmd_param */
@@ -335,14 +313,15 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 	found = strstr(cmd_param,"u:SetPower");
 	if(found){
 		/* Buscamos <Power> */
-		found = strstr(cmd_param,"<Power>");
+		found = strstr(found,"<Power>");
 		if(found){
-				found = found + 5;
+				found = found + 7;
 //				libMU_Serial_SendString("Set Encontrado: ");
 //				libMU_Serial_SendChar(found-1);
 //				libMU_Serial_SendChar(found);
 //				libMU_Serial_SendChar(found+1);
 				libMU_LED_Toggle(LED_1);
+				found[0] = '0';
 		}
 	}
 
@@ -361,8 +340,8 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
 		}	
 	}
 
-	*len = sizeof(respuesta_form);
-	return respuesta_form;
+	*len = strlen(cmd_param);
+	return (char*)cmd_param;
 }
 
 /**
@@ -375,19 +354,13 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len )
  * - Si se devuelve NULL el servidor no responde nada
  * @see libMU_Internet_Server_SetCommandProcessingInfo()
  */
-static char* Internet_Procesamiento_eventSub( const char* cmd_param, int* len )
+static char* Internet_Procesamiento_eventSub( const char* cmd_param, int* len, char* name )
 {
-	static int calls = 0;
-
-	/* Debug info */
-	calls++;	
-
 	/* Incorrectly formated cmd_param */
-	if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
+	if( cmd_param == NULL ) return NULL;
 
-
-	*len = sizeof(respuesta_form);
-	return respuesta_form;
+	*len = sizeof(services_descriptor);
+	return (char*)services_descriptor;
 }
 
 
@@ -424,49 +397,6 @@ static void Internet_ProcesamientoDePagina( char* data, unsigned short int len )
 	loc++;
 	// Convert minutes to number
 	minutos = atoi( loc );
-}
-
-/**
- * Función para el tratamiento de formularios con metodo (GET)
- * @param	cmd_param	Parametros del comando GET (empezando desde el caracter '?')
- * @param	len			Puntero a un entero donde se guarda la longitud de datos de la respuesta
- * @return				Puntero al texto con el que tiene que responder el servidor web
- * @note
- * - La longitud máxima del comando GET es de 100 bytes
- * - Si se devuelve NULL el servidor no responde nada
- * @see libMU_Internet_Server_SetCommandProcessingInfo()
- */
-static char* Internet_ProcesamientoDeFormulario( const char* cmd_param, int* len )
-{
-	static int calls = 0;
-	char msg[50]; int x = 0, y = 0, col = 15; int found;
-
-	/* Debug info */
-	calls++;	
-
-	/* Incorrectly formated cmd_param */
-	if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
-
-	/* Process cmd_param (NOTE: Case is NOT ignored)*/
-	/* x= */
-	found = libMU_Internet_GetFormIntegerValue( cmd_param, "x=", &x );
-	/* y= */
-	found |= libMU_Internet_GetFormIntegerValue( cmd_param, "y=", &y );
-	/* col= */
-	found |= libMU_Internet_GetFormIntegerValue( cmd_param, "col=", &col );
-	/* msg= */
-	found |= libMU_Internet_GetFormStringValue( cmd_param, "msg=", msg, sizeof(msg) );
-	/* show msg */
-	if( found )	{
-		libMU_Display_DrawString( msg, x, y, col );
-	}
-	/* LED toggle */
-	found = libMU_Internet_GetFormStringValue( cmd_param, "led=", msg, sizeof(msg) );
-	if( found && strcmp( msg, "toggle" )==0 ) {
-		libMU_LED_Toggle( LED_1 );
-	}
-	*len = sizeof(respuesta_form);
-	return respuesta_form;
 }
 
 /**

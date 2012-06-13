@@ -367,7 +367,7 @@ int httpd_fs_strcmp(const char *str1, const char *str2)
  * @note
  * - It uses the server web page information array (libMU_Internet_Server_Responses)
  */
-int httpd_fs_open(const char *name, struct httpd_fs_file *file)
+int httpd_fs_open(char *name, struct httpd_fs_file *file)
 {
 	libMU_Internet_Tags_t* f = libMU_Internet_Server_Responses;
 	libMU_Internet_Tags_t* end = libMU_Internet_Server_Responses + libMU_Internet_Server_TagNumber;
@@ -378,7 +378,7 @@ int httpd_fs_open(const char *name, struct httpd_fs_file *file)
 				libMU_Internet_CommandProcessingFunction_t fun;
 				fun = (libMU_Internet_CommandProcessingFunction_t)( f->data );
 				httpd_script_param [ sizeof( httpd_script_param ) -  1 ] = 0;
-				data = fun( httpd_script_param, &len );
+				data = fun( httpd_script_param, &len, name );
 			}else{
 				data = f->data;
 				len = f->length;

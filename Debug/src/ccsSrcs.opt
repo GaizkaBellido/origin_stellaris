@@ -1,1 +1,1 @@
-"../src/PLC_Mem_Interface.c" "../src/demo_1_botones_y_leds.c" "../src/demo_2_AD_y_temp.c" "../src/demo_3_PWM.c" "../src/demo_4_serie.c" "../src/demo_5_serie_XON-XOFF.c" "../src/demo_6_pantalla.c" "../src/demo_7_FreeRTOS.c" "../src/demo_8_Internet.c" "../src/demo_9_Internet_PLC.c" "../src/demo_9_Sound.c" "../src/demo_selector.c" 
+"../src/demo_8_Internet.c" 

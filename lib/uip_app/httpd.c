@@ -80,7 +80,8 @@
 #define ISO_slash   0x2f
 #define ISO_colon   0x3a
 
-char	httpd_script_param[200];
+char			httpd_script_param[HTTPD_SCRIPT_SIZE];
+unsigned int 	httpd_script_num_data;
 
 /*---------------------------------------------------------------------------*/
 static unsigned short
@@ -210,6 +211,8 @@ PT_THREAD(send_headers(struct httpd_state *s, const char *statushdr))
 		PSOCK_SEND_STR(&s->sout, http_content_type_gif);
 	} else if(strncmp(http_jpg, ptr, 4) == 0) {
 		PSOCK_SEND_STR(&s->sout, http_content_type_jpg);
+	} else if(strncmp(http_xml, ptr, 4) == 0) {
+		PSOCK_SEND_STR(&s->sout, http_content_type_xml);
 	} else {
 		PSOCK_SEND_STR(&s->sout, http_content_type_plain);
 	}
@@ -251,18 +254,29 @@ PT_THREAD(handle_output(struct httpd_state *s))
 static
 PT_THREAD(handle_input(struct httpd_state *s))
 {
-	int get = 0; int content_length = 0; u8_t* dataptrcopy;
+	int get = 0; u8_t* dataptrcopy; int done = 0;
+	if( !done && s->state_post == STATE_POST && uip_newdata() ) {
+		int len = uip_datalen();
+		char* dataptr = (char *)uip_appdata;
+		done = 1;
+	    len = s->count;
+		if( len > s->count ) len = s->count;
+		s->count -= len;
+		// call_post_processing( s->filename, dataptr, len );
+		if( len + httpd_script_num_data > sizeof( httpd_script_param ) ) 
+			len = sizeof( httpd_script_param ) - 1 - httpd_script_num_data;
+		strncpy( &httpd_script_param[httpd_script_num_data], dataptr, len );
+		httpd_script_num_data += len;
+		httpd_script_param[ len ] = 0;
+		if( s->count == 0 ) {
+			s->state_post = 0;
+			s->state = STATE_OUTPUT;
+		}else{
+			s->state = STATE_WAITING;
+		}
+	}
 	PSOCK_BEGIN(&s->sin);
 	
-	if( s->state == STATE_POST && s->sin.readlen >= s->count ) {
-		if( s->count > sizeof( httpd_script_param ) ) s->count = sizeof( httpd_script_param ) - 1;
-		strncpy( httpd_script_param, (const char*)s->sin.readptr, s->count );
-		httpd_script_param[ s->count ] = 0;
-		s->count = 0;
-		s->state = STATE_OUTPUT;
-		PSOCK_CLOSE_EXIT(&s->sin);
-	}
-
 	PSOCK_READTO(&s->sin, ISO_space);
 
 	if( strncmp(s->inputbuf, http_get, 4) == 0 )	get = 1;
@@ -309,8 +323,11 @@ PT_THREAD(handle_input(struct httpd_state *s))
 			}
 			if( s->count == 0 && strncmp(s->inputbuf, http_content_length, sizeof(http_content_length)-1 ) == 0) {
 				s->count = atoi( s->inputbuf + sizeof(http_content_length) - 1 );
-				s->state = STATE_POST;
-				strcpy(httpd_script_param, "@");
+				s->state_post = STATE_POST;
+				s->state = STATE_WAITING;
+				httpd_script_num_data = 0;
+				strcpy(httpd_script_param, "@0" );
+				done = 1;
 			}
 		}
 		if(strncmp(s->inputbuf, http_referer, 8) == 0) {

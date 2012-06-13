@@ -44,7 +44,7 @@ struct httpd_fs_file {
 
 /* file must be allocated by caller and will be filled in
    by the function. */
-int httpd_fs_open(const char *name, struct httpd_fs_file *file);
+int httpd_fs_open(char *name, struct httpd_fs_file *file);
 
 #ifdef HTTPD_FS_STATISTICS
 #if HTTPD_FS_STATISTICS == 1

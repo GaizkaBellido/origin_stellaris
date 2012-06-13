@@ -51,7 +51,7 @@ typedef void (*libMU_Internet_PageReaderFunction_t)( char *data, unsigned short 
  * - Si se devuelve NULL el servidor no responde nada
  * @see		libMU_Internet_Server_SetCommandProcessingInfo()
  */
-typedef char* (*libMU_Internet_CommandProcessingFunction_t)( const char *cmd_param, int* len );
+typedef char* (*libMU_Internet_CommandProcessingFunction_t)( const char *cmd_param, int* len, char* name );
 
 /**
  * Puntero a la función principalque se ha de ejecutar en paralelo con las tareas de comunicación

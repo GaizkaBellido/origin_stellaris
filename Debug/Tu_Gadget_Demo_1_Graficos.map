@@ -1,35 +1,35 @@
 ******************************************************************************
                   TMS470 Linker PC v4.9.0                      
 ******************************************************************************
->> Linked Sat Jun 09 16:10:39 2012
+>> Linked Wed Jun 13 20:20:17 2012
 
 OUTPUT FILE NAME:   <UPnP.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00007419
+ENTRY POINT SYMBOL: "_c_int00"  address: 000067c5
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  000094d4  00036b2c  R  X
-  SRAM                  20000000   00010000  0000b295  00004d6b  RW X
+  FLASH                 00000000   00040000  000085a0  00037a60  R  X
+  SRAM                  20000000   00010000  0000b521  00004adf  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    000094d8   000094d8    r-x
+00000000    00000000    000085a0   000085a0    r-x
   00000000    00000000    000000f0   000000f0    r-- .intvecs
-  000000f0    000000f0    00007f94   00007f94    r-x .text
-  00008084    00008084    000007c0   000007c0    r-- .const
-  00008848    00008848    00000c90   00000c90    r-- .cinit
-20000000    20000000    0000a4b0   00000000    rw-
+  000000f0    000000f0    0000730c   0000730c    r-x .text
+  000073fc    000073fc    00001104   00001104    r-- .const
+  00008500    00008500    000000a0   000000a0    r-- .cinit
+20000000    20000000    0000b3cc   00000000    rw-
   20000000    20000000    00008000   00000000    rw- .sysmem
-  20008000    20008000    000014b0   00000000    rw- .bss
-  200094b0    200094b0    00001000   00000000    rw- .stack
-2000a4b0    2000a4b0    00000de5   00000de5    rw-
-  2000a4b0    2000a4b0    00000de5   00000de5    rw- .data
+  20008000    20008000    000023cc   00000000    rw- .bss
+  2000a3cc    2000a3cc    00001000   00000000    rw- .stack
+2000b3d0    2000b3d0    00000155   00000155    rw-
+  2000b3d0    2000b3d0    00000155   00000155    rw- .data
 
 
 SECTION ALLOCATION MAP
@@ -40,428 +40,393 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    000000f0     
                   00000000    000000f0     startup_MU.obj (.intvecs)
 
-.text      0    000000f0    00007f94     
+.text      0    000000f0    0000730c     
                   000000f0    00000e8c     rtsv7M3_T_le_eabi.lib : _printfi.obj (.text)
-                  00000f7c    00000e58     uip.obj (.text:uip_process)
-                  00001dd4    000003e0     rtsv7M3_T_le_eabi.lib : memory.obj (.text)
-                  000021b4    000003bc     demo_8_Internet.obj (.text:ProgramaPrincipal)
-                  00002570    00000383     siemensTCP_app.obj (.text:process_siemensTCP_frame)
-                  000028f3    00000001     --HOLE-- [fill = 0]
-                  000028f4    0000020c     httpd.obj (.text:handle_input)
-                  00002b00    000001f4     rtsv7M3_T_le_eabi.lib : ull_div_t2.obj (.text)
-                  00002cf4    000001d8     sysctl.obj (.text:SysCtlClockGet)
-                  00002ecc    000001c0     httpd.obj (.text:send_headers)
-                  0000308c    000001b6     rtsv7M3_T_le_eabi.lib : fd_add_t2.obj (.text)
-                  00003242    00000002     startup_MU.obj (.text:BusFaultISR)
-                  00003244    00000150     uip_arp.obj (.text:uip_arp_out)
-                  00003394    00000144     sysctl.obj (.text:SysCtlClockSet)
-                  000034d8    00000144     ssdp.obj (.text:ssdp_advertise)
-                  0000361c    00000136     rtsv7M3_T_le_eabi.lib : fd_div_t2.obj (.text)
-                  00003752    00000002     startup_MU.obj (.text:FaultISR)
-                  00003754    00000110     Task_Ethernet_UIP.obj (.text:Loop_UIP)
-                  00003864    00000110     webclient.obj (.text:parse_headers)
-                  00003974    00000110     rtsv7M3_T_le_eabi.lib : strtoul.obj (.text)
-                  00003a84    00000100     dhcpc.obj (.text:handle_dhcp)
-                  00003b84    000000fc     rtsv7M3_T_le_eabi.lib : fd_mul_t2.obj (.text)
-                  00003c80    000000f0     resolv.obj (.text:check_entries)
-                  00003d70    000000e4     tasks.obj (.text:vTaskIncrementTick)
-                  00003e54    000000e4     tasks.obj (.text:xTaskGenericCreate)
-                  00003f38    000000e0     queue.obj (.text:xQueueGenericReceive)
-                  00004018    000000dc     webclient.obj (.text:parse_statusline)
-                  000040f4    000000dc     uip.obj (.text:uip_connect)
-                  000041d0    000000d8     Task_Ethernet_UIP.obj (.text:Initialize_UIP)
-                  000042a8    000000d4     rit128x96x4.obj (.text:RIT128x96x4StringDraw)
-                  0000437c    000000d0     uip_arp.obj (.text:uip_arp_update)
-                  0000444c    000000d0     tasks.obj (.text:xTaskResumeAll)
-                  0000451c    000000ca     queue.obj (.text:xQueueGenericSend)
-                  000045e6    000000c8     gpio.obj (.text:GPIOPadConfigSet)
-                  000046ae    00000002     startup_MU.obj (.text:IntDefaultHandler)
-                  000046b0    000000c8     webclient.obj (.text:senddata)
-                  00004778    000000c8     webclient.obj (.text:webclient_appcall)
-                  00004840    000000c4     demo_8_Internet.obj (.text:Internet_ProcesamientoDeFormulario)
-                  00004904    000000c4     internet.obj (.text:libMU_Internet_GetWiFiRouterIP)
-                  000049c8    000000c0     internet.obj (.text:libMU_Internet_Server_SetPage)
-                  00004a88    000000c0     special_server.obj (.text:specserver_appcall)
-                  00004b48    000000c0     uip_arp.obj (.text:uip_arp_arpin)
-                  00004c08    000000b8     resolv.obj (.text:newdata)
-                  00004cc0    000000b4     internet.obj (.text:libMU_Internet_GetFormStringValue)
-                  00004d74    000000ac     telnet_client.obj (.text:newdata)
-                  00004e20    000000a8     internet.obj (.text:libMU_Internet_GetPage)
-                  00004ec8    000000a0     rit128x96x4.obj (.text:RIT128x96x4Init)
-                  00004f68    000000a0     dhcpc.obj (.text:create_msg)
-                  00005008    0000009c     rtsv7M3_T_le_eabi.lib : memcpy_t2.obj (.text)
-                  000050a4    00000098                           : snprintf.obj (.text)
-                  0000513c    00000098     telnet_client.obj (.text:telnet_client_appcall)
-                  000051d4    00000094     rtsv7M3_T_le_eabi.lib : auto_init.obj (.text)
-                  00005268    00000090     ethernet.obj (.text:EthernetPacketGetInternal)
-                  000052f8    00000090     demo_8_Internet.obj (.text:Internet_Procesamiento_control)
-                  00005388    00000090     uip.obj (.text:uip_udp_new)
-                  00005418    0000008c     analogico_digital.obj (.text:libMU_AD_Initialize)
-                  000054a4    0000008a     ethernet.obj (.text:EthernetPacketPutInternal)
-                  0000552e    00000002     startup_MU.obj (.text:MemFaultISR)
-                  00005530    00000088     sysctl.obj (.text:SysCtlPeripheralReset)
-                  000055b8    00000084     demo_8_Internet.obj (.text:Internet_ProcesamientoDePagina)
-                  0000563c    00000084     psock.obj (.text:psock_readto)
-                  000056c0    00000080     httpd.obj (.text:handle_output)
-                  00005740    00000080     httpd.obj (.text:httpd_appcall)
-                  000057c0    0000007e     rtsv7M3_T_le_eabi.lib : fd_cmp_t2.obj (.text)
-                  0000583e    00000002     startup_MU.obj (.text:NmiSR)
-                  00005840    00000078     dhcpc.obj (.text:parse_options)
-                  000058b8    00000078     rtsv7M3_T_le_eabi.lib : memset_t2.obj (.text)
-                  00005930    00000070     Task_Ethernet_UIP.obj (.text:Task_Ethernet)
-                  000059a0    00000070     internet.obj (.text:httpd_fs_open)
-                  00005a10    00000070     psock.obj (.text:psock_generator_send)
-                  00005a80    00000070     resolv.obj (.text:resolv_hostname)
-                  00005af0    00000070     telnet_client.obj (.text:telnet_client_cmd_int)
-                  00005b60    0000006c     adc.obj (.text:ADCSequenceStepConfigure)
-                  00005bcc    0000006c     telnet_client.obj (.text:telnet_client_cmd)
-                  00005c38    0000006c     tasks.obj (.text:xTaskRemoveFromEventList)
-                  00005ca4    0000006a     queue.obj (.text:xQueueGenericCreate)
-                  00005d0e    00000002     startup_MU.obj (.text:UsageFaultISR)
-                  00005d10    00000068     telnet_client.obj (.text:telnet_client_open)
-                  00005d78    00000068     udp_frame.obj (.text:udp_frame_appcall)
-                  00005de0    00000066     internet.obj (.text:libMU_Internet_GetFormIntegerValue)
-                  00005e46    00000002     rtsv7M3_T_le_eabi.lib : tdeh_init.obj (.text)
-                  00005e48    00000064     interrupt.obj (.text:IntEnable)
-                  00005eac    00000064     ssdp.obj (.text:ssdp_udpapp)
-                  00005f10    00000064     ssdp.obj (.text:ssdp_udpinit)
-                  00005f74    00000064     tasks.obj (.text:vTaskSwitchContext)
-                  00005fd8    00000060     Task_Ethernet_UIP.obj (.text:Initialize_EthernetHW)
-                  00006038    00000060     rit128x96x4.obj (.text:RIT128x96x4Enable)
-                  00006098    00000060     resolv.obj (.text:resolv_query)
-                  000060f8    00000060     rtsv7M3_T_le_eabi.lib : sprintf.obj (.text)
-                  00006158    00000060     telnet_client.obj (.text:senddata)
-                  000061b8    00000060     webclient.obj (.text:webclient_get)
-                  00006218    0000005e     queue.obj (.text:prvUnlockQueue)
-                  00006276    0000005e     rtsv7M3_T_le_eabi.lib : copy_decompress_rle.obj (.text)
-                  000062d4    0000005c     rit128x96x4.obj (.text:RITWriteCommand)
-                  00006330    0000005c     rit128x96x4.obj (.text:RITWriteData)
-                  0000638c    0000005c     analogico_digital.obj (.text:libMU_AD_GetChannelValue)
-                  000063e8    0000005c     botones.obj (.text:libMU_Button_Initialize)
-                  00006444    0000005c     internet.obj (.text:libMU_Internet_Initialize)
-                  000064a0    0000005c     dhcpc.obj (.text:parse_msg)
-                  000064fc    0000005c     uip.obj (.text:uip_init)
-                  00006558    0000005c     tasks.obj (.text:vTaskDelayUntil)
-                  000065b4    00000058     sysctl.obj (.text:SysCtlPeripheralEnable)
-                  0000660c    00000058     psock.obj (.text:buf_bufto)
-                  00006664    00000058     rtsv7M3_T_le_eabi.lib : ltoa.obj (.text)
-                  000066bc    00000058     siemensTCP_app.obj (.text:siemensTCP_appcall)
-                  00006714    00000058     uip.obj (.text:uip_add32)
-                  0000676c    00000054     psock.obj (.text:psock_send)
-                  000067c0    00000054     httpd.obj (.text:send_file)
-                  00006814    00000050     serie.obj (.text:libMU_Serial_Initialize)
-                  00006864    00000050     protocol_switcher_app.obj (.text:protocol_switcher_app_init)
-                  000068b4    00000050     uip_arp.obj (.text:uip_arp_timer)
-                  00006904    00000050     tasks.obj (.text:vTaskStartScheduler)
-                  00006954    00000050     tasks.obj (.text:xTaskCheckForTimeOut)
-                  000069a4    0000004e     queue.obj (.text:prvCopyDataToQueue)
-                  000069f2    0000004e     queue.obj (.text:xQueueGenericSendFromISR)
-                  00006a40    0000004c     psock.obj (.text:data_acked)
-                  00006a8c    0000004c     tasks.obj (.text:prvAddCurrentTaskToDelayedList)
-                  00006ad8    0000004c     tasks.obj (.text:prvInitialiseTaskLists)
-                  00006b24    0000004c     rtsv7M3_T_le_eabi.lib : atoi.obj (.text)
-                  00006b70    0000004a     uiplib.obj (.text:uiplib_ipaddrconv)
-                  00006bba    00000002     internet.obj (.text:webclient_connected)
-                  00006bbc    00000048     rit128x96x4.obj (.text:RIT128x96x4Clear)
-                  00006c04    00000048     demo_8_Internet.obj (.text:main_demo_8)
-                  00006c4c    00000048     rtsv7M3_T_le_eabi.lib : cpy_tbl.obj (.text)
-                  00006c94    00000048                           : fd_toi_t2.obj (.text)
-                  00006cdc    00000048     psock.obj (.text:send_data)
-                  00006d24    00000046     rtsv7M3_T_le_eabi.lib : xdtest.obj (.text)
-                  00006d6a    00000002     webclient.obj (.text:webclient_init)
-                  00006d6c    00000044     PLC_Mem_Interface.obj (.text:PLC_SendMemoryData)
-                  00006db0    00000044     ssi.obj (.text:SSIConfigSetExpClk)
-                  00006df4    00000044     cronometro.obj (.text:libMU_Stopwatch_Initialize)
-                  00006e38    00000044     webclient.obj (.text:newdata)
-                  00006e7c    00000044     resolv.obj (.text:resolv_lookup)
-                  00006ec0    00000044     rtsv7M3_T_le_eabi.lib : exit.obj (.text)
-                  00006f04    00000042     uart.obj (.text:UARTConfigSetExpClk)
-                  00006f46    00000002     internet.obj (.text:webclient_timedout)
-                  00006f48    00000040     Task_Ethernet_UIP.obj (.text:EthernetIntHandler)
-                  00006f88    00000040     uip.obj (.text:chksum)
-                  00006fc8    00000040     internet.obj (.text:dhcpc_configured)
-                  00007008    00000040     telnet_client.obj (.text:telnet_client_init)
-                  00007048    0000003e     port.obj (.text:xPortPendSVHandler)
-                  00007086    00000002     --HOLE-- [fill = 0]
-                  00007088    0000003c     PLC_Mem_Interface.obj (.text:PLC_ReceiveMemoryData)
-                  000070c4    0000003c     httpd.obj (.text:generate_part_of_file)
-                  00007100    0000003c     webclient.obj (.text:init_connection)
-                  0000713c    0000003c     protocol_switcher_app.obj (.text:tcp_protocol_switcher_appcall)
-                  00007178    0000003c     protocol_switcher_app.obj (.text:udp_protocol_switcher_appcall)
-                  000071b4    0000003c     uip.obj (.text:upper_layer_chksum)
-                  000071f0    00000038     ethernet.obj (.text:EthernetMACAddrSet)
-                  00007228    00000038     flash.obj (.text:FlashUserGet)
-                  00007260    00000038     webclient.obj (.text:acked)
-                  00007298    00000038     dhcpc.obj (.text:dhcpc_init)
-                  000072d0    00000038     internet.obj (.text:httpd_fs_strcmp)
-                  00007308    00000038     tasks.obj (.text:prvAllocateTCBAndStack)
-                  00007340    00000038     tasks.obj (.text:prvInitialiseTCBVariables)
-                  00007378    00000038     list.obj (.text:vListInsert)
-                  000073b0    00000034     leds.obj (.text:libMU_LED_Initialize)
-                  000073e4    00000034     resolv.obj (.text:resolv_init)
-                  00007418    00000034     rtsv7M3_T_le_eabi.lib : boot.obj (.text)
-                  0000744c    00000034     dhcpc.obj (.text:send_request)
-                  00007480    00000032     rtsv7M3_T_le_eabi.lib : strstr.obj (.text)
-                  000074b2    00000002     --HOLE-- [fill = 0]
-                  000074b4    00000030     resolv.obj (.text:resolv_appcall)
-                  000074e4    00000030     rtsv7M3_T_le_eabi.lib : strncpy.obj (.text)
-                  00007514    00000030     dhcpc.obj (.text:send_discover)
-                  00007544    00000030     port.obj (.text:xPortStartScheduler)
-                  00007574    0000002e     adc.obj (.text:ADCIntStatus)
-                  000075a2    0000002e     gpio.obj (.text:GPIODirModeSet)
-                  000075d0    0000002e     serie.obj (.text:libMU_Serial_SendChars)
-                  000075fe    0000002e     rtsv7M3_T_le_eabi.lib : i_tofd_t2.obj (.text)
-                  0000762c    0000002c     psock.obj (.text:psock_newdata)
-                  00007658    0000002c     uip.obj (.text:uip_add_rcv_nxt)
-                  00007684    0000002c     uip.obj (.text:uip_listen)
-                  000076b0    0000002c     tasks.obj (.text:vTaskPlaceOnEventList)
-                  000076dc    0000002a     adc.obj (.text:ADCSequenceConfigure)
-                  00007706    0000002a     ethernet.obj (.text:EthernetConfigSet)
-                  00007730    0000002a     webclient.obj (.text:casecmp)
-                  0000775a    00000002     --HOLE-- [fill = 0]
-                  0000775c    00000028     demo_8_Internet.obj (.text:Internet_Procesamiento_eventSub)
-                  00007784    00000028     telnet_client.obj (.text:acked)
-                  000077ac    00000028     dhcpc.obj (.text:dhcpc_request)
-                  000077d4    00000026     queue.obj (.text:prvCopyDataFromQueue)
-                  000077fa    00000026     rtsv7M3_T_le_eabi.lib : strncmp.obj (.text)
-                  00007820    00000024     timer.obj (.text:TimerConfigure)
-                  00007844    00000024     uip.obj (.text:uip_send)
-                  00007868    00000024     port.obj (.text:xPortSysTickHandler)
-                  0000788c    00000022     ethernet.obj (.text:EthernetEnable)
-                  000078ae    00000022     rtsv7M3_T_le_eabi.lib : memcmp.obj (.text)
-                  000078d0    00000022     list.obj (.text:vListRemove)
-                  000078f2    00000002     --HOLE-- [fill = 0]
-                  000078f4    00000022     port.obj (.text:vPortSVCHandler)
-                  00007916    00000020     adc.obj (.text:ADCSequenceDataGet)
-                  00007936    00000002     --HOLE-- [fill = 0]
-                  00007938    00000020     sysctl.obj (.text:SysCtlADCSpeedSet)
-                  00007958    00000020     leds.obj (.text:libMU_LED_Toggle)
-                  00007978    00000020     cronometro.obj (.text:libMU_Stopwatch_Start)
-                  00007998    00000020     psock.obj (.text:psock_init)
-                  000079b8    00000020     rtsv7M3_T_le_eabi.lib : args_main.obj (.text)
-                  000079d8    00000020     uip.obj (.text:uip_ipchksum)
-                  000079f8    0000001e     ethernet.obj (.text:EthernetPHYRead)
-                  00007a16    0000001e     dhcpc.obj (.text:add_req_options)
-                  00007a34    0000001e     queue.obj (.text:prvIsQueueFull)
-                  00007a52    00000002     --HOLE-- [fill = 0]
-                  00007a54    0000001c     uart.obj (.text:UARTDisable)
-                  00007a70    0000001c     dhcpc.obj (.text:add_req_ipaddr)
-                  00007a8c    0000001c     dhcpc.obj (.text:add_server_id)
-                  00007aa8    0000001c     resolv.obj (.text:resolv_conf)
-                  00007ac4    0000001c     list.obj (.text:vListInsertEnd)
-                  00007ae0    0000001c     internet.obj (.text:webclient_datahandler)
-                  00007afc    0000001a     queue.obj (.text:prvIsQueueEmpty)
-                  00007b16    0000001a     port.obj (.text:pxPortInitialiseStack)
-                  00007b30    0000001a     rtsv7M3_T_le_eabi.lib : memccpy.obj (.text)
-                  00007b4a    0000001a     uip_timer.obj (.text:timer_expired)
-                  00007b64    00000018     timer.obj (.text:TimerControlTrigger)
-                  00007b7c    00000018     httpd.obj (.text:handle_connection)
-                  00007b94    00000018     pantalla.obj (.text:libMU_Display_Initialize)
-                  00007bac    00000018     serie.obj (.text:libMU_Serial_SendString)
-                  00007bc4    00000018     heap_3.obj (.text:pvPortMalloc)
-                  00007bdc    00000018     resolv.obj (.text:resolv_found)
-                  00007bf4    00000018     rtsv7M3_T_le_eabi.lib : _lock.obj (.text)
-                  00007c0c    00000018                           : ll_mul_t2.obj (.text)
-                  00007c24    00000018                           : strcmp.obj (.text)
-                  00007c3c    00000018                           : strrchr.obj (.text)
-                  00007c54    00000018     special_server.obj (.text:specserver_app_init)
-                  00007c6c    00000018     port.obj (.text:vPortEnterCritical)
-                  00007c84    00000018     port.obj (.text:vPortExitCritical)
-                  00007c9c    00000018     tasks.obj (.text:vTaskSetTimeOutState)
-                  00007cb4    00000018     tasks.obj (.text:xTaskGetTickCount)
-                  00007ccc    00000016     internet.obj (.text:libMU_Internet_Delay)
-                  00007ce2    00000016     temperatura.obj (.text:libMU_Temperature_Convert)
-                  00007cf8    00000016     rtsv7M3_T_le_eabi.lib : strchr.obj (.text)
-                  00007d0e    00000016     list.obj (.text:vListInitialise)
-                  00007d24    00000016     heap_3.obj (.text:vPortFree)
-                  00007d3a    00000002     --HOLE-- [fill = 0]
-                  00007d3c    00000016     port.obj (.text:vPortStartFirstTask)
-                  00007d52    00000002     --HOLE-- [fill = 0]
-                  00007d54    00000014     ethernet.obj (.text:EthernetInitExpClk)
-                  00007d68    00000014     uart.obj (.text:UARTEnable)
-                  00007d7c    00000014     internet.obj (.text:libMU_Internet_GetDeviceIP)
-                  00007d90    00000014     serie.obj (.text:libMU_Serial_SendChar)
-                  00007da4    00000014     tasks.obj (.text:prvIdleTask)
-                  00007db8    00000014     port.obj (.text:prvSetupTimerInterrupt)
-                  00007dcc    00000014     rtsv7M3_T_le_eabi.lib : strlen.obj (.text)
-                  00007de0    00000012     gpio.obj (.text:GPIOPinTypeADC)
-                  00007df2    00000012     gpio.obj (.text:GPIOPinTypeEthernetLED)
-                  00007e04    00000012     gpio.obj (.text:GPIOPinTypeGPIOOutput)
-                  00007e16    00000012     gpio.obj (.text:GPIOPinTypeSSI)
-                  00007e28    00000012     gpio.obj (.text:GPIOPinTypeUART)
-                  00007e3a    00000012     timer.obj (.text:TimerLoadSet)
-                  00007e4c    00000012     dhcpc.obj (.text:add_msg_type)
-                  00007e5e    00000012     rtsv7M3_T_le_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
-                  00007e70    00000012     resolv.obj (.text:parse_name)
-                  00007e82    00000012     rtsv7M3_T_le_eabi.lib : strcpy.obj (.text)
-                  00007e94    00000010     ethernet.obj (.text:EthernetPacketGetNonBlocking)
-                  00007ea4    00000010     internet.obj (.text:libMU_Internet_IsPageReadingFinished)
-                  00007eb4    00000010     port.obj (.text:vPortYieldFromISR)
-                  00007ec4    00000010     tasks.obj (.text:vTaskSuspendAll)
-                  00007ed4    0000000e     adc.obj (.text:ADCSequenceEnable)
-                  00007ee2    0000000e     timer.obj (.text:TimerEnable)
-                  00007ef0    0000000e     webclient.obj (.text:copy_string)
-                  00007efe    0000000e     rtsv7M3_T_le_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
-                  00007f0c    0000000e     temperatura.obj (.text:libMU_Temperature_Get)
-                  00007f1a    0000000e     rtsv7M3_T_le_eabi.lib : xdclass.obj (.text)
-                  00007f28    0000000e     uip_timer.obj (.text:timer_set)
-                  00007f36    0000000c     ethernet.obj (.text:EthernetIntStatus)
-                  00007f42    00000002     --HOLE-- [fill = 0]
-                  00007f44    0000000c     rit128x96x4.obj (.text:RIT128x96x4DisplayOff)
-                  00007f50    0000000c     timer.obj (.text:TimerValueGet)
-                  00007f5c    0000000c     internet.obj (.text:libMU_Internet_GetNumberOfFramesReceived)
-                  00007f68    0000000c     internet.obj (.text:libMU_Internet_GetNumberOfFramesSent)
-                  00007f74    0000000c     internet.obj (.text:libMU_Internet_GetStatus)
-                  00007f80    0000000c     internet.obj (.text:libMU_Internet_Server_SetCommandProcessingInfo)
-                  00007f8c    0000000c     tasks.obj (.text:vTaskMissedYield)
-                  00007f98    0000000c     internet.obj (.text:webclient_aborted)
-                  00007fa4    0000000c     internet.obj (.text:webclient_closed)
-                  00007fb0    0000000a     adc.obj (.text:ADCIntClear)
-                  00007fba    0000000a     adc.obj (.text:ADCSequenceOverflowClear)
-                  00007fc4    0000000a     ethernet.obj (.text:EthernetIntDisable)
-                  00007fce    0000000a     ethernet.obj (.text:EthernetPacketPut)
-                  00007fd8    0000000a     ssi.obj (.text:SSIDataPut)
-                  00007fe2    0000000a     ssi.obj (.text:SSIDisable)
-                  00007fec    0000000a     ssi.obj (.text:SSIEnable)
-                  00007ff6    0000000a     uart.obj (.text:UARTCharPut)
-                  00008000    0000000a     uip.obj (.text:htons)
-                  0000800a    0000000a     psock.obj (.text:psock_datalen)
-                  00008014    00000008     ethernet.obj (.text:EthernetIntEnable)
-                  0000801c    00000008     ssi.obj (.text:SSIBusy)
-                  00008024    00000008     dhcpc.obj (.text:add_end)
-                  0000802c    00000008     httpd.obj (.text:httpd_init)
-                  00008034    00000008     internet.obj (.text:libMU_Internet_DNS_resolution)
-                  0000803c    00000008     siemensTCP_app.obj (.text:siemensTCP_app_init)
-                  00008044    00000006     gpio.obj (.text:GPIOPinRead)
-                  0000804a    00000006     gpio.obj (.text:GPIOPinWrite)
-                  00008050    00000006     startup_MU.obj (.text:ResetISR)
-                  00008056    00000006     sysctl.obj (.text:SysCtlDelay)
-                  0000805c    00000006     psock.obj (.text:buf_setup)
-                  00008062    00000006     rtsv7M3_T_le_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
-                  00008068    00000006     uip.obj (.text:uip_tcpchksum)
-                  0000806e    00000006     list.obj (.text:vListInitialiseItem)
-                  00008074    00000004     ethernet.obj (.text:EthernetIntClear)
-                  00008078    00000004     timer.obj (.text:TimerIntClear)
-                  0000807c    00000004     dhcpc.obj (.text:dhcpc_appcall)
-                  00008080    00000004     demo_selector.obj (.text:main)
+                  00000f7c    00000e88     uip.obj (.text:uip_process)
+                  00001e04    000003e0     rtsv7M3_T_le_eabi.lib : memory.obj (.text)
+                  000021e4    00000248     httpd.obj (.text:handle_input)
+                  0000242c    000001fc     httpd.obj (.text:send_headers)
+                  00002628    000001f4     demo_8_Internet.obj (.text:ProgramaPrincipal)
+                  0000281c    000001f4     rtsv7M3_T_le_eabi.lib : ull_div_t2.obj (.text)
+                  00002a10    000001d8     sysctl.obj (.text:SysCtlClockGet)
+                  00002be8    000001b6     rtsv7M3_T_le_eabi.lib : fd_add_t2.obj (.text)
+                  00002d9e    00000002     startup_MU.obj (.text:BusFaultISR)
+                  00002da0    00000150     uip_arp.obj (.text:uip_arp_out)
+                  00002ef0    00000144     sysctl.obj (.text:SysCtlClockSet)
+                  00003034    00000144     ssdp.obj (.text:ssdp_advertise)
+                  00003178    00000136     rtsv7M3_T_le_eabi.lib : fd_div_t2.obj (.text)
+                  000032ae    00000002     startup_MU.obj (.text:FaultISR)
+                  000032b0    00000110     Task_Ethernet_UIP.obj (.text:Loop_UIP)
+                  000033c0    00000110     webclient.obj (.text:parse_headers)
+                  000034d0    00000100     dhcpc.obj (.text:handle_dhcp)
+                  000035d0    000000fc     rtsv7M3_T_le_eabi.lib : fd_mul_t2.obj (.text)
+                  000036cc    000000f0     resolv.obj (.text:check_entries)
+                  000037bc    000000e4     tasks.obj (.text:vTaskIncrementTick)
+                  000038a0    000000e4     tasks.obj (.text:xTaskGenericCreate)
+                  00003984    000000e0     uip.obj (.text:uip_connect)
+                  00003a64    000000e0     queue.obj (.text:xQueueGenericReceive)
+                  00003b44    000000dc     webclient.obj (.text:parse_statusline)
+                  00003c20    000000d8     Task_Ethernet_UIP.obj (.text:Initialize_UIP)
+                  00003cf8    000000d4     rit128x96x4.obj (.text:RIT128x96x4StringDraw)
+                  00003dcc    000000d0     uip_arp.obj (.text:uip_arp_update)
+                  00003e9c    000000d0     tasks.obj (.text:xTaskResumeAll)
+                  00003f6c    000000ca     queue.obj (.text:xQueueGenericSend)
+                  00004036    000000c8     gpio.obj (.text:GPIOPadConfigSet)
+                  000040fe    00000002     startup_MU.obj (.text:IntDefaultHandler)
+                  00004100    000000c8     webclient.obj (.text:senddata)
+                  000041c8    000000c8     webclient.obj (.text:webclient_appcall)
+                  00004290    000000c0     internet.obj (.text:libMU_Internet_Server_SetPage)
+                  00004350    000000c0     special_server.obj (.text:specserver_appcall)
+                  00004410    000000c0     uip_arp.obj (.text:uip_arp_arpin)
+                  000044d0    000000b8     resolv.obj (.text:newdata)
+                  00004588    000000ac     telnet_client.obj (.text:newdata)
+                  00004634    000000a0     rit128x96x4.obj (.text:RIT128x96x4Init)
+                  000046d4    000000a0     dhcpc.obj (.text:create_msg)
+                  00004774    0000009c     rtsv7M3_T_le_eabi.lib : memcpy_t2.obj (.text)
+                  00004810    00000098                           : snprintf.obj (.text)
+                  000048a8    00000098     telnet_client.obj (.text:telnet_client_appcall)
+                  00004940    00000094     rtsv7M3_T_le_eabi.lib : auto_init.obj (.text)
+                  000049d4    00000090     ethernet.obj (.text:EthernetPacketGetInternal)
+                  00004a64    00000090     uip.obj (.text:uip_udp_new)
+                  00004af4    0000008c     analogico_digital.obj (.text:libMU_AD_Initialize)
+                  00004b80    0000008a     ethernet.obj (.text:EthernetPacketPutInternal)
+                  00004c0a    00000002     startup_MU.obj (.text:MemFaultISR)
+                  00004c0c    00000088     sysctl.obj (.text:SysCtlPeripheralReset)
+                  00004c94    00000087     demo_8_Internet.obj (.text:Internet_Procesamiento_control)
+                  00004d1b    00000001     --HOLE-- [fill = 0]
+                  00004d1c    00000084     psock.obj (.text:psock_readto)
+                  00004da0    00000080     httpd.obj (.text:handle_output)
+                  00004e20    00000080     httpd.obj (.text:httpd_appcall)
+                  00004ea0    0000007e     rtsv7M3_T_le_eabi.lib : fd_cmp_t2.obj (.text)
+                  00004f1e    00000002     startup_MU.obj (.text:NmiSR)
+                  00004f20    00000078     dhcpc.obj (.text:parse_options)
+                  00004f98    00000078     rtsv7M3_T_le_eabi.lib : memset_t2.obj (.text)
+                  00005010    00000070     Task_Ethernet_UIP.obj (.text:Task_Ethernet)
+                  00005080    00000070     internet.obj (.text:httpd_fs_open)
+                  000050f0    00000070     psock.obj (.text:psock_generator_send)
+                  00005160    0000006c     adc.obj (.text:ADCSequenceStepConfigure)
+                  000051cc    0000006c     tasks.obj (.text:xTaskRemoveFromEventList)
+                  00005238    0000006a     queue.obj (.text:xQueueGenericCreate)
+                  000052a2    00000002     startup_MU.obj (.text:UsageFaultISR)
+                  000052a4    00000068     udp_frame.obj (.text:udp_frame_appcall)
+                  0000530c    00000064     interrupt.obj (.text:IntEnable)
+                  00005370    00000064     ssdp.obj (.text:ssdp_udpapp)
+                  000053d4    00000064     ssdp.obj (.text:ssdp_udpinit)
+                  00005438    00000064     tasks.obj (.text:vTaskSwitchContext)
+                  0000549c    00000060     Task_Ethernet_UIP.obj (.text:Initialize_EthernetHW)
+                  000054fc    00000060     rit128x96x4.obj (.text:RIT128x96x4Enable)
+                  0000555c    00000060     resolv.obj (.text:resolv_query)
+                  000055bc    00000060     rtsv7M3_T_le_eabi.lib : sprintf.obj (.text)
+                  0000561c    00000060     telnet_client.obj (.text:senddata)
+                  0000567c    00000060     webclient.obj (.text:webclient_get)
+                  000056dc    0000005e     queue.obj (.text:prvUnlockQueue)
+                  0000573a    0000005e     rtsv7M3_T_le_eabi.lib : copy_decompress_rle.obj (.text)
+                  00005798    0000005c     rit128x96x4.obj (.text:RITWriteCommand)
+                  000057f4    0000005c     rit128x96x4.obj (.text:RITWriteData)
+                  00005850    0000005c     analogico_digital.obj (.text:libMU_AD_GetChannelValue)
+                  000058ac    0000005c     botones.obj (.text:libMU_Button_Initialize)
+                  00005908    0000005c     internet.obj (.text:libMU_Internet_Initialize)
+                  00005964    0000005c     dhcpc.obj (.text:parse_msg)
+                  000059c0    0000005c     uip.obj (.text:uip_init)
+                  00005a1c    0000005c     tasks.obj (.text:vTaskDelayUntil)
+                  00005a78    00000058     sysctl.obj (.text:SysCtlPeripheralEnable)
+                  00005ad0    00000058     psock.obj (.text:buf_bufto)
+                  00005b28    00000058     rtsv7M3_T_le_eabi.lib : ltoa.obj (.text)
+                  00005b80    00000058     uip.obj (.text:uip_add32)
+                  00005bd8    00000054     psock.obj (.text:psock_send)
+                  00005c2c    00000054     httpd.obj (.text:send_file)
+                  00005c80    00000050     serie.obj (.text:libMU_Serial_Initialize)
+                  00005cd0    00000050     uip_arp.obj (.text:uip_arp_timer)
+                  00005d20    00000050     tasks.obj (.text:vTaskStartScheduler)
+                  00005d70    00000050     tasks.obj (.text:xTaskCheckForTimeOut)
+                  00005dc0    0000004e     queue.obj (.text:prvCopyDataToQueue)
+                  00005e0e    0000004e     queue.obj (.text:xQueueGenericSendFromISR)
+                  00005e5c    0000004c     psock.obj (.text:data_acked)
+                  00005ea8    0000004c     protocol_switcher_app.obj (.text:protocol_switcher_app_init)
+                  00005ef4    0000004c     tasks.obj (.text:prvAddCurrentTaskToDelayedList)
+                  00005f40    0000004c     tasks.obj (.text:prvInitialiseTaskLists)
+                  00005f8c    0000004c     rtsv7M3_T_le_eabi.lib : atoi.obj (.text)
+                  00005fd8    0000004a     uiplib.obj (.text:uiplib_ipaddrconv)
+                  00006022    00000002     rtsv7M3_T_le_eabi.lib : tdeh_init.obj (.text)
+                  00006024    00000048     rit128x96x4.obj (.text:RIT128x96x4Clear)
+                  0000606c    00000048     demo_8_Internet.obj (.text:main)
+                  000060b4    00000048     rtsv7M3_T_le_eabi.lib : cpy_tbl.obj (.text)
+                  000060fc    00000048                           : fd_toi_t2.obj (.text)
+                  00006144    00000048     psock.obj (.text:send_data)
+                  0000618c    00000046     rtsv7M3_T_le_eabi.lib : xdtest.obj (.text)
+                  000061d2    00000044     ssi.obj (.text:SSIConfigSetExpClk)
+                  00006216    00000002     internet.obj (.text:webclient_connected)
+                  00006218    00000044     cronometro.obj (.text:libMU_Stopwatch_Initialize)
+                  0000625c    00000044     webclient.obj (.text:newdata)
+                  000062a0    00000044     resolv.obj (.text:resolv_lookup)
+                  000062e4    00000044     rtsv7M3_T_le_eabi.lib : exit.obj (.text)
+                  00006328    00000042     uart.obj (.text:UARTConfigSetExpClk)
+                  0000636a    00000002     webclient.obj (.text:webclient_init)
+                  0000636c    00000040     Task_Ethernet_UIP.obj (.text:EthernetIntHandler)
+                  000063ac    00000040     uip.obj (.text:chksum)
+                  000063ec    00000040     internet.obj (.text:dhcpc_configured)
+                  0000642c    00000040     telnet_client.obj (.text:telnet_client_init)
+                  0000646c    0000003e     port.obj (.text:xPortPendSVHandler)
+                  000064aa    00000002     internet.obj (.text:webclient_timedout)
+                  000064ac    0000003c     httpd.obj (.text:generate_part_of_file)
+                  000064e8    0000003c     webclient.obj (.text:init_connection)
+                  00006524    0000003c     protocol_switcher_app.obj (.text:udp_protocol_switcher_appcall)
+                  00006560    0000003c     uip.obj (.text:upper_layer_chksum)
+                  0000659c    00000038     ethernet.obj (.text:EthernetMACAddrSet)
+                  000065d4    00000038     flash.obj (.text:FlashUserGet)
+                  0000660c    00000038     webclient.obj (.text:acked)
+                  00006644    00000038     dhcpc.obj (.text:dhcpc_init)
+                  0000667c    00000038     internet.obj (.text:httpd_fs_strcmp)
+                  000066b4    00000038     tasks.obj (.text:prvAllocateTCBAndStack)
+                  000066ec    00000038     tasks.obj (.text:prvInitialiseTCBVariables)
+                  00006724    00000038     list.obj (.text:vListInsert)
+                  0000675c    00000034     leds.obj (.text:libMU_LED_Initialize)
+                  00006790    00000034     resolv.obj (.text:resolv_init)
+                  000067c4    00000034     rtsv7M3_T_le_eabi.lib : boot.obj (.text)
+                  000067f8    00000034     dhcpc.obj (.text:send_request)
+                  0000682c    00000032     rtsv7M3_T_le_eabi.lib : strstr.obj (.text)
+                  0000685e    00000002     --HOLE-- [fill = 0]
+                  00006860    00000030     resolv.obj (.text:resolv_appcall)
+                  00006890    00000030     rtsv7M3_T_le_eabi.lib : strncpy.obj (.text)
+                  000068c0    00000030     dhcpc.obj (.text:send_discover)
+                  000068f0    00000030     protocol_switcher_app.obj (.text:tcp_protocol_switcher_appcall)
+                  00006920    00000030     port.obj (.text:xPortStartScheduler)
+                  00006950    0000002e     adc.obj (.text:ADCIntStatus)
+                  0000697e    0000002e     gpio.obj (.text:GPIODirModeSet)
+                  000069ac    0000002e     serie.obj (.text:libMU_Serial_SendChars)
+                  000069da    0000002e     rtsv7M3_T_le_eabi.lib : i_tofd_t2.obj (.text)
+                  00006a08    0000002c     psock.obj (.text:psock_newdata)
+                  00006a34    0000002c     uip.obj (.text:uip_add_rcv_nxt)
+                  00006a60    0000002c     uip.obj (.text:uip_listen)
+                  00006a8c    0000002c     tasks.obj (.text:vTaskPlaceOnEventList)
+                  00006ab8    0000002a     adc.obj (.text:ADCSequenceConfigure)
+                  00006ae2    0000002a     ethernet.obj (.text:EthernetConfigSet)
+                  00006b0c    0000002a     webclient.obj (.text:casecmp)
+                  00006b36    00000002     --HOLE-- [fill = 0]
+                  00006b38    00000028     telnet_client.obj (.text:acked)
+                  00006b60    00000028     dhcpc.obj (.text:dhcpc_request)
+                  00006b88    00000026     queue.obj (.text:prvCopyDataFromQueue)
+                  00006bae    00000026     rtsv7M3_T_le_eabi.lib : strncmp.obj (.text)
+                  00006bd4    00000024     timer.obj (.text:TimerConfigure)
+                  00006bf8    00000024     uip.obj (.text:uip_send)
+                  00006c1c    00000024     port.obj (.text:xPortSysTickHandler)
+                  00006c40    00000022     ethernet.obj (.text:EthernetEnable)
+                  00006c62    00000022     rtsv7M3_T_le_eabi.lib : memcmp.obj (.text)
+                  00006c84    00000022     list.obj (.text:vListRemove)
+                  00006ca6    00000002     --HOLE-- [fill = 0]
+                  00006ca8    00000022     port.obj (.text:vPortSVCHandler)
+                  00006cca    00000020     adc.obj (.text:ADCSequenceDataGet)
+                  00006cea    00000002     --HOLE-- [fill = 0]
+                  00006cec    00000020     sysctl.obj (.text:SysCtlADCSpeedSet)
+                  00006d0c    00000020     leds.obj (.text:libMU_LED_Toggle)
+                  00006d2c    00000020     psock.obj (.text:psock_init)
+                  00006d4c    00000020     rtsv7M3_T_le_eabi.lib : args_main.obj (.text)
+                  00006d6c    00000020     uip.obj (.text:uip_ipchksum)
+                  00006d8c    0000001e     ethernet.obj (.text:EthernetPHYRead)
+                  00006daa    0000001e     dhcpc.obj (.text:add_req_options)
+                  00006dc8    0000001e     queue.obj (.text:prvIsQueueFull)
+                  00006de6    00000002     --HOLE-- [fill = 0]
+                  00006de8    0000001c     uart.obj (.text:UARTDisable)
+                  00006e04    0000001c     dhcpc.obj (.text:add_req_ipaddr)
+                  00006e20    0000001c     dhcpc.obj (.text:add_server_id)
+                  00006e3c    0000001c     resolv.obj (.text:resolv_conf)
+                  00006e58    0000001c     list.obj (.text:vListInsertEnd)
+                  00006e74    0000001c     internet.obj (.text:webclient_datahandler)
+                  00006e90    0000001a     queue.obj (.text:prvIsQueueEmpty)
+                  00006eaa    0000001a     port.obj (.text:pxPortInitialiseStack)
+                  00006ec4    0000001a     rtsv7M3_T_le_eabi.lib : memccpy.obj (.text)
+                  00006ede    0000001a     uip_timer.obj (.text:timer_expired)
+                  00006ef8    00000018     timer.obj (.text:TimerControlTrigger)
+                  00006f10    00000018     httpd.obj (.text:handle_connection)
+                  00006f28    00000018     pantalla.obj (.text:libMU_Display_Initialize)
+                  00006f40    00000018     serie.obj (.text:libMU_Serial_SendString)
+                  00006f58    00000018     heap_3.obj (.text:pvPortMalloc)
+                  00006f70    00000018     resolv.obj (.text:resolv_found)
+                  00006f88    00000018     rtsv7M3_T_le_eabi.lib : _lock.obj (.text)
+                  00006fa0    00000018                           : ll_mul_t2.obj (.text)
+                  00006fb8    00000018                           : strcmp.obj (.text)
+                  00006fd0    00000018                           : strrchr.obj (.text)
+                  00006fe8    00000018     special_server.obj (.text:specserver_app_init)
+                  00007000    00000018     port.obj (.text:vPortEnterCritical)
+                  00007018    00000018     port.obj (.text:vPortExitCritical)
+                  00007030    00000018     tasks.obj (.text:vTaskSetTimeOutState)
+                  00007048    00000018     tasks.obj (.text:xTaskGetTickCount)
+                  00007060    00000016     internet.obj (.text:libMU_Internet_Delay)
+                  00007076    00000016     temperatura.obj (.text:libMU_Temperature_Convert)
+                  0000708c    00000016     rtsv7M3_T_le_eabi.lib : strchr.obj (.text)
+                  000070a2    00000016     list.obj (.text:vListInitialise)
+                  000070b8    00000016     heap_3.obj (.text:vPortFree)
+                  000070ce    00000002     --HOLE-- [fill = 0]
+                  000070d0    00000016     port.obj (.text:vPortStartFirstTask)
+                  000070e6    00000002     --HOLE-- [fill = 0]
+                  000070e8    00000014     ethernet.obj (.text:EthernetInitExpClk)
+                  000070fc    00000014     demo_8_Internet.obj (.text:Internet_Procesamiento_eventSub)
+                  00007110    00000014     uart.obj (.text:UARTEnable)
+                  00007124    00000014     internet.obj (.text:libMU_Internet_GetDeviceIP)
+                  00007138    00000014     serie.obj (.text:libMU_Serial_SendChar)
+                  0000714c    00000014     tasks.obj (.text:prvIdleTask)
+                  00007160    00000014     port.obj (.text:prvSetupTimerInterrupt)
+                  00007174    00000014     rtsv7M3_T_le_eabi.lib : strlen.obj (.text)
+                  00007188    00000012     gpio.obj (.text:GPIOPinTypeADC)
+                  0000719a    00000012     gpio.obj (.text:GPIOPinTypeEthernetLED)
+                  000071ac    00000012     gpio.obj (.text:GPIOPinTypeGPIOOutput)
+                  000071be    00000012     gpio.obj (.text:GPIOPinTypeSSI)
+                  000071d0    00000012     gpio.obj (.text:GPIOPinTypeUART)
+                  000071e2    00000012     timer.obj (.text:TimerLoadSet)
+                  000071f4    00000012     dhcpc.obj (.text:add_msg_type)
+                  00007206    00000012     rtsv7M3_T_le_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
+                  00007218    00000012     resolv.obj (.text:parse_name)
+                  0000722a    00000012     rtsv7M3_T_le_eabi.lib : strcpy.obj (.text)
+                  0000723c    00000010     ethernet.obj (.text:EthernetPacketGetNonBlocking)
+                  0000724c    00000010     port.obj (.text:vPortYieldFromISR)
+                  0000725c    00000010     tasks.obj (.text:vTaskSuspendAll)
+                  0000726c    0000000e     adc.obj (.text:ADCSequenceEnable)
+                  0000727a    0000000e     timer.obj (.text:TimerEnable)
+                  00007288    0000000e     webclient.obj (.text:copy_string)
+                  00007296    0000000e     rtsv7M3_T_le_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  000072a4    0000000e     temperatura.obj (.text:libMU_Temperature_Get)
+                  000072b2    0000000e     rtsv7M3_T_le_eabi.lib : xdclass.obj (.text)
+                  000072c0    0000000e     uip_timer.obj (.text:timer_set)
+                  000072ce    0000000c     ethernet.obj (.text:EthernetIntStatus)
+                  000072da    00000002     --HOLE-- [fill = 0]
+                  000072dc    0000000c     rit128x96x4.obj (.text:RIT128x96x4DisplayOff)
+                  000072e8    0000000c     internet.obj (.text:libMU_Internet_GetNumberOfFramesReceived)
+                  000072f4    0000000c     internet.obj (.text:libMU_Internet_GetNumberOfFramesSent)
+                  00007300    0000000c     internet.obj (.text:libMU_Internet_GetStatus)
+                  0000730c    0000000c     internet.obj (.text:libMU_Internet_Server_SetCommandProcessingInfo)
+                  00007318    0000000c     tasks.obj (.text:vTaskMissedYield)
+                  00007324    0000000c     internet.obj (.text:webclient_aborted)
+                  00007330    0000000c     internet.obj (.text:webclient_closed)
+                  0000733c    0000000a     adc.obj (.text:ADCIntClear)
+                  00007346    0000000a     adc.obj (.text:ADCSequenceOverflowClear)
+                  00007350    0000000a     ethernet.obj (.text:EthernetIntDisable)
+                  0000735a    0000000a     ethernet.obj (.text:EthernetPacketPut)
+                  00007364    0000000a     ssi.obj (.text:SSIDataPut)
+                  0000736e    0000000a     ssi.obj (.text:SSIDisable)
+                  00007378    0000000a     ssi.obj (.text:SSIEnable)
+                  00007382    0000000a     uart.obj (.text:UARTCharPut)
+                  0000738c    0000000a     uip.obj (.text:htons)
+                  00007396    0000000a     psock.obj (.text:psock_datalen)
+                  000073a0    00000008     ethernet.obj (.text:EthernetIntEnable)
+                  000073a8    00000008     ssi.obj (.text:SSIBusy)
+                  000073b0    00000008     dhcpc.obj (.text:add_end)
+                  000073b8    00000008     httpd.obj (.text:httpd_init)
+                  000073c0    00000006     gpio.obj (.text:GPIOPinRead)
+                  000073c6    00000006     gpio.obj (.text:GPIOPinWrite)
+                  000073cc    00000006     startup_MU.obj (.text:ResetISR)
+                  000073d2    00000006     sysctl.obj (.text:SysCtlDelay)
+                  000073d8    00000006     psock.obj (.text:buf_setup)
+                  000073de    00000006     rtsv7M3_T_le_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
+                  000073e4    00000006     uip.obj (.text:uip_tcpchksum)
+                  000073ea    00000006     list.obj (.text:vListInitialiseItem)
+                  000073f0    00000004     ethernet.obj (.text:EthernetIntClear)
+                  000073f4    00000004     timer.obj (.text:TimerIntClear)
+                  000073f8    00000004     dhcpc.obj (.text:dhcpc_appcall)
 
-.const     0    00008084    000007c0     
-                  00008084    000001e0     rit128x96x4.obj (.const:g_pucFont)
-                  00008264    00000186     http-strings.obj (.const)
-                  000083ea    00000002     --HOLE-- [fill = 0]
-                  000083ec    00000101     rtsv7M3_T_le_eabi.lib : ctype.obj (.const:_ctypes_)
-                  000084ed    00000003     --HOLE-- [fill = 0]
-                  000084f0    00000070     interrupt.obj (.const)
-                  00008560    0000006c     sysctl.obj (.const:g_pulXtals)
-                  000085cc    0000005b     http-strings.obj (.const:http_header_404)
-                  00008627    00000001     --HOLE-- [fill = 0]
-                  00008628    00000054     http-strings.obj (.const:http_header_200)
-                  0000867c    0000004f     rit128x96x4.obj (.const:g_pucRIT128x96x4Init)
-                  000086cb    00000001     --HOLE-- [fill = 0]
-                  000086cc    0000004e     http-strings.obj (.const:http_user_agent_fields)
-                  0000871a    00000002     --HOLE-- [fill = 0]
-                  0000871c    00000040     demo_8_Internet.obj (.const:.string)
-                  0000875c    00000040     sysctl.obj (.const)
-                  0000879c    0000003c     internet.obj (.const)
-                  000087d8    0000002b     http-strings.obj (.const:http_content_type_binary)
-                  00008803    00000001     --HOLE-- [fill = 0]
-                  00008804    00000018     telnet_client.obj (.const)
-                  0000881c    0000000c     rit128x96x4.obj (.const)
-                  00008828    0000000a     uip_arp.obj (.const)
-                  00008832    00000002     --HOLE-- [fill = 0]
-                  00008834    00000008     dhcpc.obj (.const)
-                  0000883c    00000008     uip.obj (.const)
+.const     0    000073fc    00001104     
+                  000073fc    000004c2     demo_8_Internet.obj (.const:services_descriptor)
+                  000078be    00000002     --HOLE-- [fill = 0]
+                  000078c0    000004b3     demo_8_Internet.obj (.const:device_descriptor)
+                  00007d73    00000001     --HOLE-- [fill = 0]
+                  00007d74    000001e0     rit128x96x4.obj (.const:g_pucFont)
+                  00007f54    000001a6     http-strings.obj (.const)
+                  000080fa    00000002     --HOLE-- [fill = 0]
+                  000080fc    00000101     rtsv7M3_T_le_eabi.lib : ctype.obj (.const:_ctypes_)
+                  000081fd    00000003     --HOLE-- [fill = 0]
+                  00008200    00000070     interrupt.obj (.const)
+                  00008270    0000006c     sysctl.obj (.const:g_pulXtals)
+                  000082dc    0000005b     http-strings.obj (.const:http_header_404)
+                  00008337    00000001     --HOLE-- [fill = 0]
+                  00008338    00000054     http-strings.obj (.const:http_header_200)
+                  0000838c    0000004f     rit128x96x4.obj (.const:g_pucRIT128x96x4Init)
+                  000083db    00000001     --HOLE-- [fill = 0]
+                  000083dc    0000004e     http-strings.obj (.const:http_user_agent_fields)
+                  0000842a    00000002     --HOLE-- [fill = 0]
+                  0000842c    00000040     demo_8_Internet.obj (.const:.string)
+                  0000846c    00000040     sysctl.obj (.const)
+                  000084ac    0000002b     http-strings.obj (.const:http_content_type_binary)
+                  000084d7    00000001     --HOLE-- [fill = 0]
+                  000084d8    0000000c     rit128x96x4.obj (.const)
+                  000084e4    0000000a     uip_arp.obj (.const)
+                  000084ee    00000002     --HOLE-- [fill = 0]
+                  000084f0    00000008     dhcpc.obj (.const)
+                  000084f8    00000008     uip.obj (.const)
 
-.cinit     0    00008848    00000c90     
-                  00008848    00000c6b     (.cinit..data.load) [load image, compression = rle]
-                  000094b3    00000001     --HOLE-- [fill = 0]
-                  000094b4    0000000c     (__TI_handler_table)
-                  000094c0    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  000094c8    00000010     (__TI_cinit_table)
+.cinit     0    00008500    000000a0     
+                  00008500    00000078     (.cinit..data.load) [load image, compression = rle]
+                  00008578    0000000c     (__TI_handler_table)
+                  00008584    00000004     --HOLE-- [fill = 0]
+                  00008588    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00008590    00000010     (__TI_cinit_table)
 
 .sysmem    0    20000000    00008000     UNINITIALIZED
                   20000000    00000008     rtsv7M3_T_le_eabi.lib : memory.obj (.sysmem)
                   20000008    00007ff8     --HOLE--
 
-.bss       0    20008000    000014b0     UNINITIALIZED
-                  20008000    00000760     uip.obj (.bss:uip_conns)
-                  20008760    000005e0     uip.obj (.bss:uip_buf)
-                  20008d40    00000180     webclient.obj (.bss:s)
-                  20008ec0    00000100     uip.obj (.bss:uip_udp_conns)
-                  20008fc0    000000c8     httpd.obj (.bss:httpd_script_param)
-                  20009088    000000a8     resolv.obj (.bss:names)
-                  20009130    000000a8     telnet_client.obj (.bss:s)
-                  200091d8    00000078     internet.obj (.bss:libMU_Internet_Server_Responses)
-                  20009250    00000060     uip_arp.obj (.bss:arp_table)
-                  200092b0    00000050     tasks.obj (.bss:pxReadyTasksLists)
-                  20009300    00000044     tasks.obj (.bss)
-                  20009344    0000003c     uip.obj (.bss)
-                  20009380    00000034     dhcpc.obj (.bss:s)
-                  200093b4    00000034     uip.obj (.bss:uip_stat)
-                  200093e8    00000020     analogico_digital.obj (.bss)
-                  20009408    0000001c     demo_9_Internet_PLC.obj (.bss)
-                  20009424    00000018     special_server.obj (.bss)
-                  2000943c    00000010     telnet_client.obj (.bss)
-                  2000944c    0000000c     PLC_Mem_Interface.obj (.bss)
-                  20009458    0000000c     Task_Ethernet_UIP.obj (.bss)
-                  20009464    0000000c     demo_8_Internet.obj (.bss)
-                  20009470    0000000c     rit128x96x4.obj (.bss)
-                  2000947c    0000000c     siemensTCP_app.obj (.bss)
-                  20009488    00000008     resolv.obj (.bss)
-                  20009490    00000008     ssdp.obj (.bss)
-                  20009498    00000008     uip_arp.obj (.bss)
-                  200094a0    00000006     protocol_switcher_app.obj (.bss)
-                  200094a6    00000002     --HOLE--
-                  200094a8    00000004     botones.obj (.bss)
-                  200094ac    00000004     webclient.obj (.bss)
+.bss       0    20008000    000023cc     UNINITIALIZED
+                  20008000    00001000     httpd.obj (.bss:httpd_script_param)
+                  20009000    00000780     uip.obj (.bss:uip_conns)
+                  20009780    000005e0     uip.obj (.bss:uip_buf)
+                  20009d60    00000180     webclient.obj (.bss:s)
+                  20009ee0    00000100     uip.obj (.bss:uip_udp_conns)
+                  20009fe0    000000a8     resolv.obj (.bss:names)
+                  2000a088    000000a8     telnet_client.obj (.bss:s)
+                  2000a130    00000078     internet.obj (.bss:libMU_Internet_Server_Responses)
+                  2000a1a8    00000060     uip_arp.obj (.bss:arp_table)
+                  2000a208    00000050     tasks.obj (.bss:pxReadyTasksLists)
+                  2000a258    00000044     tasks.obj (.bss)
+                  2000a29c    0000003c     uip.obj (.bss)
+                  2000a2d8    00000034     dhcpc.obj (.bss:s)
+                  2000a30c    00000034     uip.obj (.bss:uip_stat)
+                  2000a340    00000020     analogico_digital.obj (.bss)
+                  2000a360    00000018     special_server.obj (.bss)
+                  2000a378    00000010     telnet_client.obj (.bss)
+                  2000a388    0000000c     Task_Ethernet_UIP.obj (.bss)
+                  2000a394    0000000c     rit128x96x4.obj (.bss)
+                  2000a3a0    00000008     resolv.obj (.bss)
+                  2000a3a8    00000008     ssdp.obj (.bss)
+                  2000a3b0    00000008     uip_arp.obj (.bss)
+                  2000a3b8    00000006     protocol_switcher_app.obj (.bss)
+                  2000a3be    00000002     --HOLE--
+                  2000a3c0    00000004     botones.obj (.bss)
+                  2000a3c4    00000004     httpd.obj (.bss)
+                  2000a3c8    00000004     webclient.obj (.bss)
 
-.stack     0    200094b0    00001000     UNINITIALIZED
-                  200094b0    00001000     --HOLE--
+.stack     0    2000a3cc    00001000     UNINITIALIZED
+                  2000a3cc    00001000     --HOLE--
 
-.data      0    2000a4b0    00000de5     
-                  2000a4b0    000004c2     demo_8_Internet.obj (.data:services_descriptor)
-                  2000a972    00000002     --HOLE--
-                  2000a974    000004b3     demo_8_Internet.obj (.data:device_descriptor)
-                  2000ae27    00000001     --HOLE--
-                  2000ae28    00000223     demo_8_Internet.obj (.data:respuesta_form)
-                  2000b04b    00000001     --HOLE--
-                  2000b04c    00000004     cronometro.obj (.data)
-                  2000b050    00000070     rtsv7M3_T_le_eabi.lib : xlvalues.obj (.data)
-                  2000b0c0    00000064     demo_8_Internet.obj (.data:respuesta_datos)
-                  2000b124    00000064     demo_8_Internet.obj (.data:respuesta_temp)
-                  2000b188    00000040     udp_frame.obj (.data:udp_frame_pi)
-                  2000b1c8    00000034     tasks.obj (.data)
-                  2000b1fc    0000001c     demo_8_Internet.obj (.data)
-                  2000b218    00000016     siemensTCP_app.obj (.data)
-                  2000b22e    00000002     --HOLE--
-                  2000b230    0000000d     Task_Ethernet_UIP.obj (.data)
-                  2000b23d    00000003     --HOLE--
-                  2000b240    0000000d     resolv.obj (.data)
-                  2000b24d    00000003     --HOLE--
-                  2000b250    0000000c     internet.obj (.data)
-                  2000b25c    0000000c     rtsv7M3_T_le_eabi.lib : memory.obj (.data)
-                  2000b268    00000008                           : _lock.obj (.data)
-                  2000b270    00000008                           : exit.obj (.data)
-                  2000b278    00000006     uip.obj (.data)
-                  2000b27e    00000002     --HOLE--
-                  2000b280    00000004     port.obj (.data)
-                  2000b284    00000004     rtsv7M3_T_le_eabi.lib : errno.obj (.data)
-                  2000b288    00000004                           : stkdepth_vars.obj (.data)
-                  2000b28c    00000004     telnet_client.obj (.data)
-                  2000b290    00000004     udp_frame.obj (.data)
-                  2000b294    00000001     special_server.obj (.data)
+.data      0    2000b3d0    00000155     
+                  2000b3d0    00000070     rtsv7M3_T_le_eabi.lib : xlvalues.obj (.data)
+                  2000b440    00000040     udp_frame.obj (.data:udp_frame_pi)
+                  2000b480    00000034     tasks.obj (.data)
+                  2000b4b4    00000010     demo_8_Internet.obj (.data)
+                  2000b4c4    0000000d     Task_Ethernet_UIP.obj (.data)
+                  2000b4d1    00000003     --HOLE--
+                  2000b4d4    0000000d     resolv.obj (.data)
+                  2000b4e1    00000003     --HOLE--
+                  2000b4e4    0000000c     internet.obj (.data)
+                  2000b4f0    0000000c     rtsv7M3_T_le_eabi.lib : memory.obj (.data)
+                  2000b4fc    00000008                           : _lock.obj (.data)
+                  2000b504    00000008                           : exit.obj (.data)
+                  2000b50c    00000006     uip.obj (.data)
+                  2000b512    00000002     --HOLE--
+                  2000b514    00000004     port.obj (.data)
+                  2000b518    00000004     rtsv7M3_T_le_eabi.lib : stkdepth_vars.obj (.data)
+                  2000b51c    00000004     telnet_client.obj (.data)
+                  2000b520    00000004     udp_frame.obj (.data)
+                  2000b524    00000001     special_server.obj (.data)
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 000094c8 records: 2, size/record: 8, table size: 16
-	.data: load addr=00008848, load size=00000c6b bytes, run addr=2000a4b0, run size=00000de5 bytes, compression=rle
-	.bss: load addr=000094c0, load size=00000008 bytes, run addr=20008000, run size=000014b0 bytes, compression=zero_init
+__TI_cinit_table @ 00008590 records: 2, size/record: 8, table size: 16
+	.data: load addr=00008500, load size=00000078 bytes, run addr=2000b3d0, run size=00000155 bytes, compression=rle
+	.bss: load addr=00008588, load size=00000008 bytes, run addr=20008000, run size=000023cc bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 000094b4 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00008578 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_rle24
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -471,377 +436,349 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address    name
 --------   ----
-00007fb1   ADCIntClear
-00007575   ADCIntStatus
-000076dd   ADCSequenceConfigure
-00007917   ADCSequenceDataGet
-00007ed5   ADCSequenceEnable
-00007fbb   ADCSequenceOverflowClear
-00005b61   ADCSequenceStepConfigure
-00003243   BusFaultISR
-00006ec1   C$$EXIT
-20009494   Contador_Envio_SSDP
-00007707   EthernetConfigSet
-0000788d   EthernetEnable
-00007d55   EthernetInitExpClk
-00008075   EthernetIntClear
-00007fc5   EthernetIntDisable
-00008015   EthernetIntEnable
-00006f49   EthernetIntHandler
-00007f37   EthernetIntStatus
-000071f1   EthernetMACAddrSet
-000079f9   EthernetPHYRead
-00007e95   EthernetPacketGetNonBlocking
-00007fcf   EthernetPacketPut
-00003753   FaultISR
-00007229   FlashUserGet
-000075a3   GPIODirModeSet
-000045e7   GPIOPadConfigSet
-00008045   GPIOPinRead
-00007de1   GPIOPinTypeADC
-00007df3   GPIOPinTypeEthernetLED
-00007e05   GPIOPinTypeGPIOOutput
-00007e17   GPIOPinTypeSSI
-00007e29   GPIOPinTypeUART
-0000804b   GPIOPinWrite
-00005fd9   Initialize_EthernetHW
-000041d1   Initialize_UIP
-000046af   IntDefaultHandler
-00005e49   IntEnable
-00003755   Loop_UIP
-0000552f   MemFaultISR
-0000583f   NmiSR
-20009410   PLC_Reads
-00007089   PLC_ReceiveMemoryData
-00006d6d   PLC_SendMemoryData
-2000940c   PLC_Writes
-00006bbd   RIT128x96x4Clear
-00007f45   RIT128x96x4DisplayOff
-00006039   RIT128x96x4Enable
-00004ec9   RIT128x96x4Init
-000042a9   RIT128x96x4StringDraw
-00008051   ResetISR
-0000801d   SSIBusy
-00006db1   SSIConfigSetExpClk
-00007fd9   SSIDataPut
-00007fe3   SSIDisable
-00007fed   SSIEnable
-2000b230   Sem_EthPacketReceived
-2000b240   Sem_Resolv
-20009408   Switches
-00007939   SysCtlADCSpeedSet
-00002cf5   SysCtlClockGet
-00003395   SysCtlClockSet
-00008057   SysCtlDelay
-000065b5   SysCtlPeripheralEnable
-00005531   SysCtlPeripheralReset
-00005931   Task_Ethernet
-00007821   TimerConfigure
-00007b65   TimerControlTrigger
-00007ee3   TimerEnable
-00008079   TimerIntClear
-00007e3b   TimerLoadSet
-00007f51   TimerValueGet
-00007ff7   UARTCharPut
-00006f05   UARTConfigSetExpClk
-00007a55   UARTDisable
-00007d69   UARTEnable
-00005d0f   UsageFaultISR
-00007f1b   _Dclass
-00006d25   _Dtest
-2000b284   _Errno
-2000b050   _LDenorm
-2000b060   _LEps
-2000b070   _LInf
-2000b080   _LNan
-2000b0a0   _LRteps
-2000b090   _LSnan
-2000b0b0   _LXbig
-2000b0b8   _LZero
-2000a4b0   __STACK_END
+0000733d   ADCIntClear
+00006951   ADCIntStatus
+00006ab9   ADCSequenceConfigure
+00006ccb   ADCSequenceDataGet
+0000726d   ADCSequenceEnable
+00007347   ADCSequenceOverflowClear
+00005161   ADCSequenceStepConfigure
+00002d9f   BusFaultISR
+000062e5   C$$EXIT
+2000a3ac   Contador_Envio_SSDP
+00006ae3   EthernetConfigSet
+00006c41   EthernetEnable
+000070e9   EthernetInitExpClk
+000073f1   EthernetIntClear
+00007351   EthernetIntDisable
+000073a1   EthernetIntEnable
+0000636d   EthernetIntHandler
+000072cf   EthernetIntStatus
+0000659d   EthernetMACAddrSet
+00006d8d   EthernetPHYRead
+0000723d   EthernetPacketGetNonBlocking
+0000735b   EthernetPacketPut
+000032af   FaultISR
+000065d5   FlashUserGet
+0000697f   GPIODirModeSet
+00004037   GPIOPadConfigSet
+000073c1   GPIOPinRead
+00007189   GPIOPinTypeADC
+0000719b   GPIOPinTypeEthernetLED
+000071ad   GPIOPinTypeGPIOOutput
+000071bf   GPIOPinTypeSSI
+000071d1   GPIOPinTypeUART
+000073c7   GPIOPinWrite
+0000549d   Initialize_EthernetHW
+00003c21   Initialize_UIP
+000040ff   IntDefaultHandler
+0000530d   IntEnable
+000032b1   Loop_UIP
+00004c0b   MemFaultISR
+00004f1f   NmiSR
+00006025   RIT128x96x4Clear
+000072dd   RIT128x96x4DisplayOff
+000054fd   RIT128x96x4Enable
+00004635   RIT128x96x4Init
+00003cf9   RIT128x96x4StringDraw
+000073cd   ResetISR
+000073a9   SSIBusy
+000061d3   SSIConfigSetExpClk
+00007365   SSIDataPut
+0000736f   SSIDisable
+00007379   SSIEnable
+2000b4c4   Sem_EthPacketReceived
+2000b4d4   Sem_Resolv
+00006ced   SysCtlADCSpeedSet
+00002a11   SysCtlClockGet
+00002ef1   SysCtlClockSet
+000073d3   SysCtlDelay
+00005a79   SysCtlPeripheralEnable
+00004c0d   SysCtlPeripheralReset
+00005011   Task_Ethernet
+00006bd5   TimerConfigure
+00006ef9   TimerControlTrigger
+0000727b   TimerEnable
+000073f5   TimerIntClear
+000071e3   TimerLoadSet
+00007383   UARTCharPut
+00006329   UARTConfigSetExpClk
+00006de9   UARTDisable
+00007111   UARTEnable
+000052a3   UsageFaultISR
+000072b3   _Dclass
+0000618d   _Dtest
+2000b3d0   _LDenorm
+2000b3e0   _LEps
+2000b3f0   _LInf
+2000b400   _LNan
+2000b420   _LRteps
+2000b410   _LSnan
+2000b430   _LXbig
+2000b438   _LZero
+2000b3cc   __STACK_END
 00001000   __STACK_SIZE
-200095b0   __STACK_TOP
+2000a4cc   __STACK_TOP
 00008000   __SYSMEM_SIZE
-000094c8   __TI_CINIT_Base
-000094d8   __TI_CINIT_Limit
-000094b4   __TI_Handler_Table_Base
-000094c0   __TI_Handler_Table_Limit
+00008590   __TI_CINIT_Base
+000085a0   __TI_CINIT_Limit
+00008578   __TI_Handler_Table_Base
+00008584   __TI_Handler_Table_Limit
 00000001   __TI_args_main
-000051d5   __TI_auto_init
-00007eff   __TI_decompress_none
-00008063   __TI_decompress_rle24
+00004941   __TI_auto_init
+00007297   __TI_decompress_none
+000073df   __TI_decompress_rle24
 00000000   __TI_static_base__
-00007e5f   __TI_zero_init
-000057c1   __aeabi_cdcmpeq
-000057c1   __aeabi_cdcmple
-00006c95   __aeabi_d2iz
-00003097   __aeabi_dadd
-0000361d   __aeabi_ddiv
-00003b85   __aeabi_dmul
-0000308d   __aeabi_dsub
-000075ff   __aeabi_i2d
-00007c0d   __aeabi_lmul
-000058b9   __aeabi_memclr
-000058b9   __aeabi_memclr4
-000058b9   __aeabi_memclr8
-00005009   __aeabi_memcpy
-00005009   __aeabi_memcpy4
-00005009   __aeabi_memcpy8
-000058bb   __aeabi_memset
-000058bb   __aeabi_memset4
-000058bb   __aeabi_memset8
-00002b01   __aeabi_uldivmod
+00007207   __TI_zero_init
+00004ea1   __aeabi_cdcmpeq
+00004ea1   __aeabi_cdcmple
+000060fd   __aeabi_d2iz
+00002bf3   __aeabi_dadd
+00003179   __aeabi_ddiv
+000035d1   __aeabi_dmul
+00002be9   __aeabi_dsub
+000069db   __aeabi_i2d
+00006fa1   __aeabi_lmul
+00004f99   __aeabi_memclr
+00004f99   __aeabi_memclr4
+00004f99   __aeabi_memclr8
+00004775   __aeabi_memcpy
+00004775   __aeabi_memcpy4
+00004775   __aeabi_memcpy8
+00004f9b   __aeabi_memset
+00004f9b   __aeabi_memset4
+00004f9b   __aeabi_memset8
+0000281d   __aeabi_uldivmod
 ffffffff   __binit__
 ffffffff   __c_args__
-200094b0   __stack
-00005e47   __tdeh_init
-000079b9   _args_main
-00007419   _c_int00
-2000b270   _cleanup_ptr
-000083ec   _ctypes_
-2000b274   _dtors_ptr
-2000b268   _lock
-00007c01   _nop
+2000a3cc   __stack
+00006023   __tdeh_init
+00006d4d   _args_main
+000067c5   _c_int00
+2000b504   _cleanup_ptr
+000080fc   _ctypes_
+2000b508   _dtors_ptr
+2000b4fc   _lock
+00006f95   _nop
 00000def   _printfi
-00007bfb   _register_lock
-00007bf5   _register_unlock
+00006f8f   _register_lock
+00006f89   _register_unlock
 20000000   _sys_memory
-2000b26c   _unlock
-00006ec5   abort
-00006b25   atoi
-2000b23c   bInitUIP
+2000b500   _unlock
+000062e9   abort
+00005f8d   atoi
+2000b4d0   bInitUIP
 ffffffff   binit
-00002177   calloc
-00007cb5   clock_time
-00006c4d   copy_in
-2000a974   device_descriptor
-0000807d   dhcpc_appcall
-00006fc9   dhcpc_configured
-00007299   dhcpc_init
-000077ad   dhcpc_request
-00006ecd   exit
-00001ec3   free
+000021a7   calloc
+00007049   clock_time
+000060b5   copy_in
+000078c0   device_descriptor
+000073f9   dhcpc_appcall
+000063ed   dhcpc_configured
+00006645   dhcpc_init
+00006b61   dhcpc_request
+000062f1   exit
+00001ef3   free
 00000000   g_pfnVectors
-00008001   htons
-00008286   http_10
-0000828f   http_11
-0000826c   http_200
-00008271   http_301
-00008276   http_302
-000082e2   http_404_html
-00008298   http_content_length
-000082a8   http_content_type
-000087d8   http_content_type_binary
-0000832e   http_content_type_css
-00008381   http_content_type_gif
-00008312   http_content_type_html
-0000839d   http_content_type_jpg
-000082f5   http_content_type_plain
-00008365   http_content_type_png
-00008349   http_content_type_text
-000082d3   http_crnl
-000083cc   http_css
-0000827b   http_get
-000083d6   http_gif
-00008628   http_header_200
-000085cc   http_header_404
-000082cc   http_host
-000083c7   http_htm
-000083ba   http_html
-00008264   http_http
-000082d6   http_index_html
-000083db   http_jpg
-000082c1   http_location
-000083d1   http_png
-00008280   http_post
-000082ec   http_referer
-000083c0   http_shtml
-000083e0   http_text
-000082b7   http_texthtml
-000083e5   http_txt
-000086cc   http_user_agent_fields
-00005741   httpd_appcall
-000059a1   httpd_fs_open
-000072d1   httpd_fs_strcmp
-0000802d   httpd_init
-20008fc0   httpd_script_param
-2000b238   lARPTimer
-2000b234   lPeriodicTimer
-0000638d   libMU_AD_GetChannelValue
-00005419   libMU_AD_Initialize
-200094a8   libMU_ButtonState
-000063e9   libMU_Button_Initialize
-00007b95   libMU_Display_Initialize
-00008035   libMU_Internet_DNS_resolution
-00007ccd   libMU_Internet_Delay
-00007d7d   libMU_Internet_GetDeviceIP
-00005de1   libMU_Internet_GetFormIntegerValue
-00004cc1   libMU_Internet_GetFormStringValue
-00007f5d   libMU_Internet_GetNumberOfFramesReceived
-00007f69   libMU_Internet_GetNumberOfFramesSent
-00004e21   libMU_Internet_GetPage
-00007f75   libMU_Internet_GetStatus
-00004905   libMU_Internet_GetWiFiRouterIP
-00006445   libMU_Internet_Initialize
-00007ea5   libMU_Internet_IsPageReadingFinished
-2000b254   libMU_Internet_PageReaderFunction
-200091d8   libMU_Internet_Server_Responses
-00007f81   libMU_Internet_Server_SetCommandProcessingInfo
-000049c9   libMU_Internet_Server_SetPage
-2000b258   libMU_Internet_Server_TagNumber
-000073b1   libMU_LED_Initialize
-00007959   libMU_LED_Toggle
-00006815   libMU_Serial_Initialize
-00007d91   libMU_Serial_SendChar
-000075d1   libMU_Serial_SendChars
-00007bad   libMU_Serial_SendString
-2000b04c   libMU_Stopwatch_Count_HighOrder
-00006df5   libMU_Stopwatch_Initialize
-00007979   libMU_Stopwatch_Start
-00007ce3   libMU_Temperature_Convert
-00007f0d   libMU_Temperature_Get
-00006665   ltoa
-00008081   main
-00006c05   main_demo_8
-2000b288   main_func_sp
-00001e61   malloc
-000020a1   memalign
-00007b31   memccpy
-000078af   memcmp
-00005009   memcpy
-000058c1   memset
-00001dd5   minit
-2000b250   network_state
-00002571   process_siemensTCP_frame
-00006865   protocol_switcher_app_init
-0000800b   psock_datalen
-00005a11   psock_generator_send
-00007999   psock_init
-0000762d   psock_newdata
-0000563d   psock_readto
-0000676d   psock_send
-00007bc5   pvPortMalloc
-2000b1c8   pxCurrentTCB
-00007b17   pxPortInitialiseStack
-00001f8d   realloc
-000074b5   resolv_appcall
-00007aa9   resolv_conf
-00007bdd   resolv_found
-00005a81   resolv_hostname
-000073e5   resolv_init
-00006e7d   resolv_lookup
-00006099   resolv_query
-20009130   s
-2000a4b0   services_descriptor
-00008804   setup1_cmd
-00008807   setup2_cmd
-0000803d   siemensTCP_app_init
-000066bd   siemensTCP_appcall
-2000b219   siemensTCP_msg
-2000b218   siemensTCP_state
-2000947c   siemens_stats
-000050a5   snprintf
-00007c55   specserver_app_init
-00004a89   specserver_appcall
-20009424   specserver_resp_data
-20009428   specserver_resp_data_len
-2000942c   specserver_stats
-000060f9   sprintf
-000034d9   ssdp_advertise
-00005ead   ssdp_udpapp
-00005f11   ssdp_udpinit
-00007cf9   strchr
-00007c25   strcmp
-00007e83   strcpy
-00007dcd   strlen
-000077fb   strncmp
-000074e5   strncpy
-00007c3d   strrchr
-00007481   strstr
-00003975   strtoul
-0000713d   tcp_protocol_switcher_appcall
-0000513d   telnet_client_appcall
-00005bcd   telnet_client_cmd
-00005af1   telnet_client_cmd_int
-00007009   telnet_client_init
-00005d11   telnet_client_open
-2000943c   telnet_stats
-00007b4b   timer_expired
-00007f29   timer_set
-2000944c   tr
-20009414   tr_byte
-00005d79   udp_frame_appcall
-00007179   udp_protocol_switcher_appcall
-20009378   uip_acc32
-00006715   uip_add32
-20009350   uip_appdata
-00004b49   uip_arp_arpin
-00003245   uip_arp_out
-000068b5   uip_arp_timer
-20008760   uip_buf
-20009360   uip_conn
-000040f5   uip_connect
-20008000   uip_conns
-20009348   uip_draddr
-2000b278   uip_ethaddr
-2000935c   uip_flags
-20009344   uip_hostaddr
-000064fd   uip_init
-000079d9   uip_ipchksum
-20009358   uip_len
-00007685   uip_listen
-20009364   uip_listenports
-2000934c   uip_netmask
+0000738d   htons
+00007f76   http_10
+00007f7f   http_11
+00007f5c   http_200
+00007f61   http_301
+00007f66   http_302
+00007fd2   http_404_html
+00007f88   http_content_length
+00007f98   http_content_type
+000084ac   http_content_type_binary
+0000801e   http_content_type_css
+0000808c   http_content_type_gif
+00008002   http_content_type_html
+000080a8   http_content_type_jpg
+00007fe5   http_content_type_plain
+00008070   http_content_type_png
+00008054   http_content_type_text
+00008039   http_content_type_xml
+00007fc3   http_crnl
+000080d7   http_css
+00007f6b   http_get
+000080e1   http_gif
+00008338   http_header_200
+000082dc   http_header_404
+00007fbc   http_host
+000080d2   http_htm
+000080c5   http_html
+00007f54   http_http
+00007fc6   http_index_html
+000080e6   http_jpg
+00007fb1   http_location
+000080dc   http_png
+00007f70   http_post
+00007fdc   http_referer
+000080cb   http_shtml
+000080f0   http_text
+00007fa7   http_texthtml
+000080f5   http_txt
+000083dc   http_user_agent_fields
+000080eb   http_xml
+00004e21   httpd_appcall
+00005081   httpd_fs_open
+0000667d   httpd_fs_strcmp
+000073b9   httpd_init
+2000a3c4   httpd_script_num_data
+20008000   httpd_script_param
+2000b4cc   lARPTimer
+2000b4c8   lPeriodicTimer
+00005851   libMU_AD_GetChannelValue
+00004af5   libMU_AD_Initialize
+2000a3c0   libMU_ButtonState
+000058ad   libMU_Button_Initialize
+00006f29   libMU_Display_Initialize
+00007061   libMU_Internet_Delay
+00007125   libMU_Internet_GetDeviceIP
+000072e9   libMU_Internet_GetNumberOfFramesReceived
+000072f5   libMU_Internet_GetNumberOfFramesSent
+00007301   libMU_Internet_GetStatus
+00005909   libMU_Internet_Initialize
+2000b4e8   libMU_Internet_PageReaderFunction
+2000a130   libMU_Internet_Server_Responses
+0000730d   libMU_Internet_Server_SetCommandProcessingInfo
+00004291   libMU_Internet_Server_SetPage
+2000b4ec   libMU_Internet_Server_TagNumber
+0000675d   libMU_LED_Initialize
+00006d0d   libMU_LED_Toggle
+00005c81   libMU_Serial_Initialize
+00007139   libMU_Serial_SendChar
+000069ad   libMU_Serial_SendChars
+00006f41   libMU_Serial_SendString
+00006219   libMU_Stopwatch_Initialize
+00007077   libMU_Temperature_Convert
+000072a5   libMU_Temperature_Get
+00005b29   ltoa
+0000606d   main
+2000b518   main_func_sp
+00001e91   malloc
+000020d1   memalign
+00006ec5   memccpy
+00006c63   memcmp
+00004775   memcpy
+00004fa1   memset
+00001e05   minit
+2000b4e4   network_state
+00005ea9   protocol_switcher_app_init
+00007397   psock_datalen
+000050f1   psock_generator_send
+00006d2d   psock_init
+00006a09   psock_newdata
+00004d1d   psock_readto
+00005bd9   psock_send
+00006f59   pvPortMalloc
+2000b480   pxCurrentTCB
+00006eab   pxPortInitialiseStack
+00001fbd   realloc
+00006861   resolv_appcall
+00006e3d   resolv_conf
+00006f71   resolv_found
+00006791   resolv_init
+000062a1   resolv_lookup
+0000555d   resolv_query
+2000a088   s
+000073fc   services_descriptor
+00004811   snprintf
+00006fe9   specserver_app_init
+00004351   specserver_appcall
+2000a360   specserver_resp_data
+2000a364   specserver_resp_data_len
+2000a368   specserver_stats
+000055bd   sprintf
+00003035   ssdp_advertise
+00005371   ssdp_udpapp
+000053d5   ssdp_udpinit
+0000708d   strchr
+00006fb9   strcmp
+0000722b   strcpy
+00007175   strlen
+00006baf   strncmp
+00006891   strncpy
+00006fd1   strrchr
+0000682d   strstr
+000068f1   tcp_protocol_switcher_appcall
+000048a9   telnet_client_appcall
+0000642d   telnet_client_init
+2000a378   telnet_stats
+00006edf   timer_expired
+000072c1   timer_set
+000052a5   udp_frame_appcall
+00006525   udp_protocol_switcher_appcall
+2000a2d0   uip_acc32
+00005b81   uip_add32
+2000a2a8   uip_appdata
+00004411   uip_arp_arpin
+00002da1   uip_arp_out
+00005cd1   uip_arp_timer
+20009780   uip_buf
+2000a2b8   uip_conn
+00003985   uip_connect
+20009000   uip_conns
+2000a2a0   uip_draddr
+2000b50c   uip_ethaddr
+2000a2b4   uip_flags
+2000a29c   uip_hostaddr
+000059c1   uip_init
+00006d6d   uip_ipchksum
+2000a2b0   uip_len
+00006a61   uip_listen
+2000a2bc   uip_listenports
+2000a2a4   uip_netmask
 00000f7d   uip_process
-20009354   uip_sappdata
-00007845   uip_send
-2000935a   uip_slen
-200093b4   uip_stat
-00008069   uip_tcpchksum
-2000936c   uip_udp_conn
-20008ec0   uip_udp_conns
-00005389   uip_udp_new
-00006b71   uiplib_ipaddrconv
-20009490   upd_conex
-00007d0f   vListInitialise
-0000806f   vListInitialiseItem
-00007379   vListInsert
-00007ac5   vListInsertEnd
-000078d1   vListRemove
-00007c6d   vPortEnterCritical
-00007c85   vPortExitCritical
-00007d25   vPortFree
-000078f5   vPortSVCHandler
-00007d3d   vPortStartFirstTask
-00007eb5   vPortYieldFromISR
-00006559   vTaskDelayUntil
-00003d71   vTaskIncrementTick
-00007f8d   vTaskMissedYield
-000076b1   vTaskPlaceOnEventList
-00007c9d   vTaskSetTimeOutState
-00006905   vTaskStartScheduler
-00007ec5   vTaskSuspendAll
-00005f75   vTaskSwitchContext
-00007f99   webclient_aborted
-00004779   webclient_appcall
-00007fa5   webclient_closed
-00006bbb   webclient_connected
-00007ae1   webclient_datahandler
-000061b9   webclient_get
-00006d6b   webclient_init
-00006f47   webclient_timedout
-00007049   xPortPendSVHandler
-00007545   xPortStartScheduler
-00007869   xPortSysTickHandler
-00005ca5   xQueueGenericCreate
-00003f39   xQueueGenericReceive
-0000451d   xQueueGenericSend
-000069f3   xQueueGenericSendFromISR
-00006955   xTaskCheckForTimeOut
-00003e55   xTaskGenericCreate
-00007cb5   xTaskGetTickCount
-00005c39   xTaskRemoveFromEventList
-0000444d   xTaskResumeAll
+2000a2ac   uip_sappdata
+00006bf9   uip_send
+2000a2b2   uip_slen
+2000a30c   uip_stat
+000073e5   uip_tcpchksum
+2000a2c4   uip_udp_conn
+20009ee0   uip_udp_conns
+00004a65   uip_udp_new
+00005fd9   uiplib_ipaddrconv
+2000a3a8   upd_conex
+000070a3   vListInitialise
+000073eb   vListInitialiseItem
+00006725   vListInsert
+00006e59   vListInsertEnd
+00006c85   vListRemove
+00007001   vPortEnterCritical
+00007019   vPortExitCritical
+000070b9   vPortFree
+00006ca9   vPortSVCHandler
+000070d1   vPortStartFirstTask
+0000724d   vPortYieldFromISR
+00005a1d   vTaskDelayUntil
+000037bd   vTaskIncrementTick
+00007319   vTaskMissedYield
+00006a8d   vTaskPlaceOnEventList
+00007031   vTaskSetTimeOutState
+00005d21   vTaskStartScheduler
+0000725d   vTaskSuspendAll
+00005439   vTaskSwitchContext
+00007325   webclient_aborted
+000041c9   webclient_appcall
+00007331   webclient_closed
+00006217   webclient_connected
+00006e75   webclient_datahandler
+0000567d   webclient_get
+0000636b   webclient_init
+000064ab   webclient_timedout
+0000646d   xPortPendSVHandler
+00006921   xPortStartScheduler
+00006c1d   xPortSysTickHandler
+00005239   xQueueGenericCreate
+00003a65   xQueueGenericReceive
+00003f6d   xQueueGenericSend
+00005e0f   xQueueGenericSendFromISR
+00005d71   xTaskCheckForTimeOut
+000038a1   xTaskGenericCreate
+00007049   xTaskGetTickCount
+000051cd   xTaskRemoveFromEventList
+00003e9d   xTaskResumeAll
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -854,370 +791,342 @@ address    name
 00000def   _printfi
 00000f7d   uip_process
 00001000   __STACK_SIZE
-00001dd5   minit
-00001e61   malloc
-00001ec3   free
-00001f8d   realloc
-000020a1   memalign
-00002177   calloc
-00002571   process_siemensTCP_frame
-00002b01   __aeabi_uldivmod
-00002cf5   SysCtlClockGet
-0000308d   __aeabi_dsub
-00003097   __aeabi_dadd
-00003243   BusFaultISR
-00003245   uip_arp_out
-00003395   SysCtlClockSet
-000034d9   ssdp_advertise
-0000361d   __aeabi_ddiv
-00003753   FaultISR
-00003755   Loop_UIP
-00003975   strtoul
-00003b85   __aeabi_dmul
-00003d71   vTaskIncrementTick
-00003e55   xTaskGenericCreate
-00003f39   xQueueGenericReceive
-000040f5   uip_connect
-000041d1   Initialize_UIP
-000042a9   RIT128x96x4StringDraw
-0000444d   xTaskResumeAll
-0000451d   xQueueGenericSend
-000045e7   GPIOPadConfigSet
-000046af   IntDefaultHandler
-00004779   webclient_appcall
-00004905   libMU_Internet_GetWiFiRouterIP
-000049c9   libMU_Internet_Server_SetPage
-00004a89   specserver_appcall
-00004b49   uip_arp_arpin
-00004cc1   libMU_Internet_GetFormStringValue
-00004e21   libMU_Internet_GetPage
-00004ec9   RIT128x96x4Init
-00005009   __aeabi_memcpy
-00005009   __aeabi_memcpy4
-00005009   __aeabi_memcpy8
-00005009   memcpy
-000050a5   snprintf
-0000513d   telnet_client_appcall
-000051d5   __TI_auto_init
-00005389   uip_udp_new
-00005419   libMU_AD_Initialize
-0000552f   MemFaultISR
-00005531   SysCtlPeripheralReset
-0000563d   psock_readto
-00005741   httpd_appcall
-000057c1   __aeabi_cdcmpeq
-000057c1   __aeabi_cdcmple
-0000583f   NmiSR
-000058b9   __aeabi_memclr
-000058b9   __aeabi_memclr4
-000058b9   __aeabi_memclr8
-000058bb   __aeabi_memset
-000058bb   __aeabi_memset4
-000058bb   __aeabi_memset8
-000058c1   memset
-00005931   Task_Ethernet
-000059a1   httpd_fs_open
-00005a11   psock_generator_send
-00005a81   resolv_hostname
-00005af1   telnet_client_cmd_int
-00005b61   ADCSequenceStepConfigure
-00005bcd   telnet_client_cmd
-00005c39   xTaskRemoveFromEventList
-00005ca5   xQueueGenericCreate
-00005d0f   UsageFaultISR
-00005d11   telnet_client_open
-00005d79   udp_frame_appcall
-00005de1   libMU_Internet_GetFormIntegerValue
-00005e47   __tdeh_init
-00005e49   IntEnable
-00005ead   ssdp_udpapp
-00005f11   ssdp_udpinit
-00005f75   vTaskSwitchContext
-00005fd9   Initialize_EthernetHW
-00006039   RIT128x96x4Enable
-00006099   resolv_query
-000060f9   sprintf
-000061b9   webclient_get
-0000638d   libMU_AD_GetChannelValue
-000063e9   libMU_Button_Initialize
-00006445   libMU_Internet_Initialize
-000064fd   uip_init
-00006559   vTaskDelayUntil
-000065b5   SysCtlPeripheralEnable
-00006665   ltoa
-000066bd   siemensTCP_appcall
-00006715   uip_add32
-0000676d   psock_send
-00006815   libMU_Serial_Initialize
-00006865   protocol_switcher_app_init
-000068b5   uip_arp_timer
-00006905   vTaskStartScheduler
-00006955   xTaskCheckForTimeOut
-000069f3   xQueueGenericSendFromISR
-00006b25   atoi
-00006b71   uiplib_ipaddrconv
-00006bbb   webclient_connected
-00006bbd   RIT128x96x4Clear
-00006c05   main_demo_8
-00006c4d   copy_in
-00006c95   __aeabi_d2iz
-00006d25   _Dtest
-00006d6b   webclient_init
-00006d6d   PLC_SendMemoryData
-00006db1   SSIConfigSetExpClk
-00006df5   libMU_Stopwatch_Initialize
-00006e7d   resolv_lookup
-00006ec1   C$$EXIT
-00006ec5   abort
-00006ecd   exit
-00006f05   UARTConfigSetExpClk
-00006f47   webclient_timedout
-00006f49   EthernetIntHandler
-00006fc9   dhcpc_configured
-00007009   telnet_client_init
-00007049   xPortPendSVHandler
-00007089   PLC_ReceiveMemoryData
-0000713d   tcp_protocol_switcher_appcall
-00007179   udp_protocol_switcher_appcall
-000071f1   EthernetMACAddrSet
-00007229   FlashUserGet
-00007299   dhcpc_init
-000072d1   httpd_fs_strcmp
-00007379   vListInsert
-000073b1   libMU_LED_Initialize
-000073e5   resolv_init
-00007419   _c_int00
-00007481   strstr
-000074b5   resolv_appcall
-000074e5   strncpy
-00007545   xPortStartScheduler
-00007575   ADCIntStatus
-000075a3   GPIODirModeSet
-000075d1   libMU_Serial_SendChars
-000075ff   __aeabi_i2d
-0000762d   psock_newdata
-00007685   uip_listen
-000076b1   vTaskPlaceOnEventList
-000076dd   ADCSequenceConfigure
-00007707   EthernetConfigSet
-000077ad   dhcpc_request
-000077fb   strncmp
-00007821   TimerConfigure
-00007845   uip_send
-00007869   xPortSysTickHandler
-0000788d   EthernetEnable
-000078af   memcmp
-000078d1   vListRemove
-000078f5   vPortSVCHandler
-00007917   ADCSequenceDataGet
-00007939   SysCtlADCSpeedSet
-00007959   libMU_LED_Toggle
-00007979   libMU_Stopwatch_Start
-00007999   psock_init
-000079b9   _args_main
-000079d9   uip_ipchksum
-000079f9   EthernetPHYRead
-00007a55   UARTDisable
-00007aa9   resolv_conf
-00007ac5   vListInsertEnd
-00007ae1   webclient_datahandler
-00007b17   pxPortInitialiseStack
-00007b31   memccpy
-00007b4b   timer_expired
-00007b65   TimerControlTrigger
-00007b95   libMU_Display_Initialize
-00007bad   libMU_Serial_SendString
-00007bc5   pvPortMalloc
-00007bdd   resolv_found
-00007bf5   _register_unlock
-00007bfb   _register_lock
-00007c01   _nop
-00007c0d   __aeabi_lmul
-00007c25   strcmp
-00007c3d   strrchr
-00007c55   specserver_app_init
-00007c6d   vPortEnterCritical
-00007c85   vPortExitCritical
-00007c9d   vTaskSetTimeOutState
-00007cb5   clock_time
-00007cb5   xTaskGetTickCount
-00007ccd   libMU_Internet_Delay
-00007ce3   libMU_Temperature_Convert
-00007cf9   strchr
-00007d0f   vListInitialise
-00007d25   vPortFree
-00007d3d   vPortStartFirstTask
-00007d55   EthernetInitExpClk
-00007d69   UARTEnable
-00007d7d   libMU_Internet_GetDeviceIP
-00007d91   libMU_Serial_SendChar
-00007dcd   strlen
-00007de1   GPIOPinTypeADC
-00007df3   GPIOPinTypeEthernetLED
-00007e05   GPIOPinTypeGPIOOutput
-00007e17   GPIOPinTypeSSI
-00007e29   GPIOPinTypeUART
-00007e3b   TimerLoadSet
-00007e5f   __TI_zero_init
-00007e83   strcpy
-00007e95   EthernetPacketGetNonBlocking
-00007ea5   libMU_Internet_IsPageReadingFinished
-00007eb5   vPortYieldFromISR
-00007ec5   vTaskSuspendAll
-00007ed5   ADCSequenceEnable
-00007ee3   TimerEnable
-00007eff   __TI_decompress_none
-00007f0d   libMU_Temperature_Get
-00007f1b   _Dclass
-00007f29   timer_set
-00007f37   EthernetIntStatus
-00007f45   RIT128x96x4DisplayOff
-00007f51   TimerValueGet
-00007f5d   libMU_Internet_GetNumberOfFramesReceived
-00007f69   libMU_Internet_GetNumberOfFramesSent
-00007f75   libMU_Internet_GetStatus
-00007f81   libMU_Internet_Server_SetCommandProcessingInfo
-00007f8d   vTaskMissedYield
-00007f99   webclient_aborted
-00007fa5   webclient_closed
-00007fb1   ADCIntClear
-00007fbb   ADCSequenceOverflowClear
-00007fc5   EthernetIntDisable
-00007fcf   EthernetPacketPut
-00007fd9   SSIDataPut
-00007fe3   SSIDisable
-00007fed   SSIEnable
-00007ff7   UARTCharPut
+00001e05   minit
+00001e91   malloc
+00001ef3   free
+00001fbd   realloc
+000020d1   memalign
+000021a7   calloc
+0000281d   __aeabi_uldivmod
+00002a11   SysCtlClockGet
+00002be9   __aeabi_dsub
+00002bf3   __aeabi_dadd
+00002d9f   BusFaultISR
+00002da1   uip_arp_out
+00002ef1   SysCtlClockSet
+00003035   ssdp_advertise
+00003179   __aeabi_ddiv
+000032af   FaultISR
+000032b1   Loop_UIP
+000035d1   __aeabi_dmul
+000037bd   vTaskIncrementTick
+000038a1   xTaskGenericCreate
+00003985   uip_connect
+00003a65   xQueueGenericReceive
+00003c21   Initialize_UIP
+00003cf9   RIT128x96x4StringDraw
+00003e9d   xTaskResumeAll
+00003f6d   xQueueGenericSend
+00004037   GPIOPadConfigSet
+000040ff   IntDefaultHandler
+000041c9   webclient_appcall
+00004291   libMU_Internet_Server_SetPage
+00004351   specserver_appcall
+00004411   uip_arp_arpin
+00004635   RIT128x96x4Init
+00004775   __aeabi_memcpy
+00004775   __aeabi_memcpy4
+00004775   __aeabi_memcpy8
+00004775   memcpy
+00004811   snprintf
+000048a9   telnet_client_appcall
+00004941   __TI_auto_init
+00004a65   uip_udp_new
+00004af5   libMU_AD_Initialize
+00004c0b   MemFaultISR
+00004c0d   SysCtlPeripheralReset
+00004d1d   psock_readto
+00004e21   httpd_appcall
+00004ea1   __aeabi_cdcmpeq
+00004ea1   __aeabi_cdcmple
+00004f1f   NmiSR
+00004f99   __aeabi_memclr
+00004f99   __aeabi_memclr4
+00004f99   __aeabi_memclr8
+00004f9b   __aeabi_memset
+00004f9b   __aeabi_memset4
+00004f9b   __aeabi_memset8
+00004fa1   memset
+00005011   Task_Ethernet
+00005081   httpd_fs_open
+000050f1   psock_generator_send
+00005161   ADCSequenceStepConfigure
+000051cd   xTaskRemoveFromEventList
+00005239   xQueueGenericCreate
+000052a3   UsageFaultISR
+000052a5   udp_frame_appcall
+0000530d   IntEnable
+00005371   ssdp_udpapp
+000053d5   ssdp_udpinit
+00005439   vTaskSwitchContext
+0000549d   Initialize_EthernetHW
+000054fd   RIT128x96x4Enable
+0000555d   resolv_query
+000055bd   sprintf
+0000567d   webclient_get
+00005851   libMU_AD_GetChannelValue
+000058ad   libMU_Button_Initialize
+00005909   libMU_Internet_Initialize
+000059c1   uip_init
+00005a1d   vTaskDelayUntil
+00005a79   SysCtlPeripheralEnable
+00005b29   ltoa
+00005b81   uip_add32
+00005bd9   psock_send
+00005c81   libMU_Serial_Initialize
+00005cd1   uip_arp_timer
+00005d21   vTaskStartScheduler
+00005d71   xTaskCheckForTimeOut
+00005e0f   xQueueGenericSendFromISR
+00005ea9   protocol_switcher_app_init
+00005f8d   atoi
+00005fd9   uiplib_ipaddrconv
+00006023   __tdeh_init
+00006025   RIT128x96x4Clear
+0000606d   main
+000060b5   copy_in
+000060fd   __aeabi_d2iz
+0000618d   _Dtest
+000061d3   SSIConfigSetExpClk
+00006217   webclient_connected
+00006219   libMU_Stopwatch_Initialize
+000062a1   resolv_lookup
+000062e5   C$$EXIT
+000062e9   abort
+000062f1   exit
+00006329   UARTConfigSetExpClk
+0000636b   webclient_init
+0000636d   EthernetIntHandler
+000063ed   dhcpc_configured
+0000642d   telnet_client_init
+0000646d   xPortPendSVHandler
+000064ab   webclient_timedout
+00006525   udp_protocol_switcher_appcall
+0000659d   EthernetMACAddrSet
+000065d5   FlashUserGet
+00006645   dhcpc_init
+0000667d   httpd_fs_strcmp
+00006725   vListInsert
+0000675d   libMU_LED_Initialize
+00006791   resolv_init
+000067c5   _c_int00
+0000682d   strstr
+00006861   resolv_appcall
+00006891   strncpy
+000068f1   tcp_protocol_switcher_appcall
+00006921   xPortStartScheduler
+00006951   ADCIntStatus
+0000697f   GPIODirModeSet
+000069ad   libMU_Serial_SendChars
+000069db   __aeabi_i2d
+00006a09   psock_newdata
+00006a61   uip_listen
+00006a8d   vTaskPlaceOnEventList
+00006ab9   ADCSequenceConfigure
+00006ae3   EthernetConfigSet
+00006b61   dhcpc_request
+00006baf   strncmp
+00006bd5   TimerConfigure
+00006bf9   uip_send
+00006c1d   xPortSysTickHandler
+00006c41   EthernetEnable
+00006c63   memcmp
+00006c85   vListRemove
+00006ca9   vPortSVCHandler
+00006ccb   ADCSequenceDataGet
+00006ced   SysCtlADCSpeedSet
+00006d0d   libMU_LED_Toggle
+00006d2d   psock_init
+00006d4d   _args_main
+00006d6d   uip_ipchksum
+00006d8d   EthernetPHYRead
+00006de9   UARTDisable
+00006e3d   resolv_conf
+00006e59   vListInsertEnd
+00006e75   webclient_datahandler
+00006eab   pxPortInitialiseStack
+00006ec5   memccpy
+00006edf   timer_expired
+00006ef9   TimerControlTrigger
+00006f29   libMU_Display_Initialize
+00006f41   libMU_Serial_SendString
+00006f59   pvPortMalloc
+00006f71   resolv_found
+00006f89   _register_unlock
+00006f8f   _register_lock
+00006f95   _nop
+00006fa1   __aeabi_lmul
+00006fb9   strcmp
+00006fd1   strrchr
+00006fe9   specserver_app_init
+00007001   vPortEnterCritical
+00007019   vPortExitCritical
+00007031   vTaskSetTimeOutState
+00007049   clock_time
+00007049   xTaskGetTickCount
+00007061   libMU_Internet_Delay
+00007077   libMU_Temperature_Convert
+0000708d   strchr
+000070a3   vListInitialise
+000070b9   vPortFree
+000070d1   vPortStartFirstTask
+000070e9   EthernetInitExpClk
+00007111   UARTEnable
+00007125   libMU_Internet_GetDeviceIP
+00007139   libMU_Serial_SendChar
+00007175   strlen
+00007189   GPIOPinTypeADC
+0000719b   GPIOPinTypeEthernetLED
+000071ad   GPIOPinTypeGPIOOutput
+000071bf   GPIOPinTypeSSI
+000071d1   GPIOPinTypeUART
+000071e3   TimerLoadSet
+00007207   __TI_zero_init
+0000722b   strcpy
+0000723d   EthernetPacketGetNonBlocking
+0000724d   vPortYieldFromISR
+0000725d   vTaskSuspendAll
+0000726d   ADCSequenceEnable
+0000727b   TimerEnable
+00007297   __TI_decompress_none
+000072a5   libMU_Temperature_Get
+000072b3   _Dclass
+000072c1   timer_set
+000072cf   EthernetIntStatus
+000072dd   RIT128x96x4DisplayOff
+000072e9   libMU_Internet_GetNumberOfFramesReceived
+000072f5   libMU_Internet_GetNumberOfFramesSent
+00007301   libMU_Internet_GetStatus
+0000730d   libMU_Internet_Server_SetCommandProcessingInfo
+00007319   vTaskMissedYield
+00007325   webclient_aborted
+00007331   webclient_closed
+0000733d   ADCIntClear
+00007347   ADCSequenceOverflowClear
+00007351   EthernetIntDisable
+0000735b   EthernetPacketPut
+00007365   SSIDataPut
+0000736f   SSIDisable
+00007379   SSIEnable
+00007383   UARTCharPut
+0000738d   htons
+00007397   psock_datalen
+000073a1   EthernetIntEnable
+000073a9   SSIBusy
+000073b9   httpd_init
+000073c1   GPIOPinRead
+000073c7   GPIOPinWrite
+000073cd   ResetISR
+000073d3   SysCtlDelay
+000073df   __TI_decompress_rle24
+000073e5   uip_tcpchksum
+000073eb   vListInitialiseItem
+000073f1   EthernetIntClear
+000073f5   TimerIntClear
+000073f9   dhcpc_appcall
+000073fc   services_descriptor
+000078c0   device_descriptor
+00007f54   http_http
+00007f5c   http_200
+00007f61   http_301
+00007f66   http_302
+00007f6b   http_get
+00007f70   http_post
+00007f76   http_10
+00007f7f   http_11
+00007f88   http_content_length
+00007f98   http_content_type
+00007fa7   http_texthtml
+00007fb1   http_location
+00007fbc   http_host
+00007fc3   http_crnl
+00007fc6   http_index_html
+00007fd2   http_404_html
+00007fdc   http_referer
+00007fe5   http_content_type_plain
 00008000   __SYSMEM_SIZE
-00008001   htons
-0000800b   psock_datalen
-00008015   EthernetIntEnable
-0000801d   SSIBusy
-0000802d   httpd_init
-00008035   libMU_Internet_DNS_resolution
-0000803d   siemensTCP_app_init
-00008045   GPIOPinRead
-0000804b   GPIOPinWrite
-00008051   ResetISR
-00008057   SysCtlDelay
-00008063   __TI_decompress_rle24
-00008069   uip_tcpchksum
-0000806f   vListInitialiseItem
-00008075   EthernetIntClear
-00008079   TimerIntClear
-0000807d   dhcpc_appcall
-00008081   main
-00008264   http_http
-0000826c   http_200
-00008271   http_301
-00008276   http_302
-0000827b   http_get
-00008280   http_post
-00008286   http_10
-0000828f   http_11
-00008298   http_content_length
-000082a8   http_content_type
-000082b7   http_texthtml
-000082c1   http_location
-000082cc   http_host
-000082d3   http_crnl
-000082d6   http_index_html
-000082e2   http_404_html
-000082ec   http_referer
-000082f5   http_content_type_plain
-00008312   http_content_type_html
-0000832e   http_content_type_css
-00008349   http_content_type_text
-00008365   http_content_type_png
-00008381   http_content_type_gif
-0000839d   http_content_type_jpg
-000083ba   http_html
-000083c0   http_shtml
-000083c7   http_htm
-000083cc   http_css
-000083d1   http_png
-000083d6   http_gif
-000083db   http_jpg
-000083e0   http_text
-000083e5   http_txt
-000083ec   _ctypes_
-000085cc   http_header_404
-00008628   http_header_200
-000086cc   http_user_agent_fields
-000087d8   http_content_type_binary
-00008804   setup1_cmd
-00008807   setup2_cmd
-000094b4   __TI_Handler_Table_Base
-000094c0   __TI_Handler_Table_Limit
-000094c8   __TI_CINIT_Base
-000094d8   __TI_CINIT_Limit
+00008002   http_content_type_html
+0000801e   http_content_type_css
+00008039   http_content_type_xml
+00008054   http_content_type_text
+00008070   http_content_type_png
+0000808c   http_content_type_gif
+000080a8   http_content_type_jpg
+000080c5   http_html
+000080cb   http_shtml
+000080d2   http_htm
+000080d7   http_css
+000080dc   http_png
+000080e1   http_gif
+000080e6   http_jpg
+000080eb   http_xml
+000080f0   http_text
+000080f5   http_txt
+000080fc   _ctypes_
+000082dc   http_header_404
+00008338   http_header_200
+000083dc   http_user_agent_fields
+000084ac   http_content_type_binary
+00008578   __TI_Handler_Table_Base
+00008584   __TI_Handler_Table_Limit
+00008590   __TI_CINIT_Base
+000085a0   __TI_CINIT_Limit
 20000000   _sys_memory
-20008000   uip_conns
-20008760   uip_buf
-20008ec0   uip_udp_conns
-20008fc0   httpd_script_param
-20009130   s
-200091d8   libMU_Internet_Server_Responses
-20009344   uip_hostaddr
-20009348   uip_draddr
-2000934c   uip_netmask
-20009350   uip_appdata
-20009354   uip_sappdata
-20009358   uip_len
-2000935a   uip_slen
-2000935c   uip_flags
-20009360   uip_conn
-20009364   uip_listenports
-2000936c   uip_udp_conn
-20009378   uip_acc32
-200093b4   uip_stat
-20009408   Switches
-2000940c   PLC_Writes
-20009410   PLC_Reads
-20009414   tr_byte
-20009424   specserver_resp_data
-20009428   specserver_resp_data_len
-2000942c   specserver_stats
-2000943c   telnet_stats
-2000944c   tr
-2000947c   siemens_stats
-20009490   upd_conex
-20009494   Contador_Envio_SSDP
-200094a8   libMU_ButtonState
-200094b0   __stack
-200095b0   __STACK_TOP
-2000a4b0   __STACK_END
-2000a4b0   services_descriptor
-2000a974   device_descriptor
-2000b04c   libMU_Stopwatch_Count_HighOrder
-2000b050   _LDenorm
-2000b060   _LEps
-2000b070   _LInf
-2000b080   _LNan
-2000b090   _LSnan
-2000b0a0   _LRteps
-2000b0b0   _LXbig
-2000b0b8   _LZero
-2000b1c8   pxCurrentTCB
-2000b218   siemensTCP_state
-2000b219   siemensTCP_msg
-2000b230   Sem_EthPacketReceived
-2000b234   lPeriodicTimer
-2000b238   lARPTimer
-2000b23c   bInitUIP
-2000b240   Sem_Resolv
-2000b250   network_state
-2000b254   libMU_Internet_PageReaderFunction
-2000b258   libMU_Internet_Server_TagNumber
-2000b268   _lock
-2000b26c   _unlock
-2000b270   _cleanup_ptr
-2000b274   _dtors_ptr
-2000b278   uip_ethaddr
-2000b284   _Errno
-2000b288   main_func_sp
+20008000   httpd_script_param
+20009000   uip_conns
+20009780   uip_buf
+20009ee0   uip_udp_conns
+2000a088   s
+2000a130   libMU_Internet_Server_Responses
+2000a29c   uip_hostaddr
+2000a2a0   uip_draddr
+2000a2a4   uip_netmask
+2000a2a8   uip_appdata
+2000a2ac   uip_sappdata
+2000a2b0   uip_len
+2000a2b2   uip_slen
+2000a2b4   uip_flags
+2000a2b8   uip_conn
+2000a2bc   uip_listenports
+2000a2c4   uip_udp_conn
+2000a2d0   uip_acc32
+2000a30c   uip_stat
+2000a360   specserver_resp_data
+2000a364   specserver_resp_data_len
+2000a368   specserver_stats
+2000a378   telnet_stats
+2000a3a8   upd_conex
+2000a3ac   Contador_Envio_SSDP
+2000a3c0   libMU_ButtonState
+2000a3c4   httpd_script_num_data
+2000a3cc   __stack
+2000a4cc   __STACK_TOP
+2000b3cc   __STACK_END
+2000b3d0   _LDenorm
+2000b3e0   _LEps
+2000b3f0   _LInf
+2000b400   _LNan
+2000b410   _LSnan
+2000b420   _LRteps
+2000b430   _LXbig
+2000b438   _LZero
+2000b480   pxCurrentTCB
+2000b4c4   Sem_EthPacketReceived
+2000b4c8   lPeriodicTimer
+2000b4cc   lARPTimer
+2000b4d0   bInitUIP
+2000b4d4   Sem_Resolv
+2000b4e4   network_state
+2000b4e8   libMU_Internet_PageReaderFunction
+2000b4ec   libMU_Internet_Server_TagNumber
+2000b4fc   _lock
+2000b500   _unlock
+2000b504   _cleanup_ptr
+2000b508   _dtors_ptr
+2000b50c   uip_ethaddr
+2000b518   main_func_sp
 ffffffff   __binit__
 ffffffff   __c_args__
 ffffffff   binit
 
-[371 symbols]
+[343 symbols]

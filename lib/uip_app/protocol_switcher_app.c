@@ -15,7 +15,7 @@
 void protocol_switcher_app_init(void)
 {
 	telnet_client_init();
-	siemensTCP_app_init();
+	//siemensTCP_app_init();
 	specserver_app_init();
 	webclient_init();
 	httpd_init();
@@ -40,10 +40,10 @@ void tcp_protocol_switcher_appcall(void)
 		telnet_client_appcall();
 		return;
 	}
-	if( uip_conn->lport == HTONS( SIEMENS_TCP_PORT ) ) { // Siements TCPIP port
-		siemensTCP_appcall();
-		return;
-	}
+//	if( uip_conn->lport == HTONS( SIEMENS_TCP_PORT ) ) { // Siements TCPIP port
+//		siemensTCP_appcall();
+//		return;
+//	}
 	if( uip_conn->lport == HTONS( 80 ) ) { // Web Server port
 		httpd_appcall();
 		return;
