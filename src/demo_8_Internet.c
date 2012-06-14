@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @addtogroup demos
  * Test de las comunicaciones Internet mediante el uso de un
  * servidor web y consulta a una página de Internet
@@ -9,6 +9,7 @@
  * @copyright	BSDL
  ********************************************************************
  */
+
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
