@@ -18,7 +18,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.core.MRU_PROGRAM_NAME" value="C:\Users\Spook\Documents\workspace\UPnP_SSDP\Debug\UPnP.out"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="UPnP_SSDP"/>
 <stringAttribute key="CCEDebugOptions.CPU_NAME" value="Stellaris In-Circuit Debug Interface_0/CORTEX_M3_0"/>
-<stringAttribute key="com.ti.ccstudio.debug.core.MRU_MODULES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;modules&gt;&#13;&#10;&lt;module name=&quot;C:\Users\Spook\Documents\workspace\UPnP_SSDP\Debug\UPnP.out&quot; time=&quot;Wed Jun 13 20:20:43 CEST 2012&quot; time_long=&quot;1339611643512&quot;/&gt;&#13;&#10;&lt;/modules&gt;&#13;&#10;"/>
+<stringAttribute key="com.ti.ccstudio.debug.core.MRU_MODULES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;modules&gt;&#13;&#10;&lt;module name=&quot;C:\Users\Spook\Documents\workspace\UPnP_SSDP\Debug\UPnP.out&quot; time=&quot;Fri Jun 15 00:06:07 CEST 2012&quot; time_long=&quot;1339711567428&quot;/&gt;&#13;&#10;&lt;/modules&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;globalVariableList/&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/UPnP.out"/>
 <stringAttribute key="CCEDebugOptions.CPU_ISA" value="CORTEX_M3"/>

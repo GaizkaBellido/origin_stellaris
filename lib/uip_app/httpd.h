@@ -51,6 +51,7 @@ struct httpd_state {
   int scriptlen;
   
   char state_post;
+  char ispost;
   unsigned int count;
 };
 

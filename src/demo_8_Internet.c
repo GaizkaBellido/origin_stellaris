@@ -28,16 +28,13 @@
  * Funciones locales
  */
 static void		ProgramaPrincipal(void *param);
-static void 	Internet_ProcesamientoDePagina( char* data, unsigned short int len ) ;
+//static void 	Internet_ProcesamientoDePagina( char* data, unsigned short int len ) ;
 static char*	Internet_Procesamiento_control( const char* tag, int* len, char* name );
-static char*	Internet_Procesamiento_eventSub( const char* tag, int* len, char* name );
+//static char*	Internet_Procesamiento_eventSub( const char* tag, int* len, char* name );
 
-/**
- * Variables locales (datos de la página leída)
- */
-static int hora;
-static int minutos;
-static int bytes_recibidos;
+char response[350];
+
+int power = 1;
 
 /**
  * Variables locales (paginas Web del servidor)
@@ -74,13 +71,13 @@ const char device_descriptor[] =
 	"				<serviceType>urn:schemas-upnp-org:service:power:1</serviceType>" 
 	"				<serviceId>urn:schemas-upnp-org:serviceId:power:1</serviceId> "
 	"				<SCPDURL>services.xml</SCPDURL>" 
-	"				<controlURL>/service/power/control</controlURL> "
-	"				<eventSubURL>/service/power/eventSub</eventSubURL> "
+	"				<controlURL>/service/power/control.xml</controlURL> "
+	"				<eventSubURL>/service/power/event.xml</eventSubURL> "
 	"			</service>"
 	"		</serviceList>"
 	"		<presentationURL>http://www.cybergarage.org</presentationURL> "
 	"	</device>"
-	"</root>";
+	"</root>\r\n\r\n";
 	
 const char services_descriptor[] = 
 	"<?xml version=\"1.0\"?>"
@@ -135,7 +132,27 @@ const char services_descriptor[] =
 	"			<dataType>boolean</dataType>"
 	"		</stateVariable>"
 	"	</serviceStateTable>"
-	"</scpd>";
+	"</scpd>\r\n\r\n";
+	
+const char response_set_power[] =
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+"<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n"
+"	<s:Body>\r\n"
+"		<u:SetPowerResponse xmlns:u=\"urn:schemas-upnp-org:service:power:1\">\r\n"
+"			<Result>%d</Result>\r\n"
+"		</u:SetPowerResponse>\r\n"
+"	</s:Body>\r\n"
+"</s:Envelope>\r\n";
+
+const char response_get_power[] =
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+"<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n"
+"	<s:Body>\r\n"
+"		<u:GetPowerResponse xmlns:u=\"urn:schemas-upnp-org:service:power:1\">\r\n"
+"			<Power>%d</Power>\r\n"
+"		</u:GetPowerResponse>\r\n"
+"	</s:Body>\r\n"
+"</s:Envelope>\r\n";
 
 /**
  * Programa principal
@@ -162,9 +179,7 @@ int main(void)
 /**
  * Una vez que se inicializa internet el resto del programa sigue aqui
  */
-static void ProgramaPrincipal(void *param)
-{
-	libMU_Stopwatch_Time_t t;
+static void ProgramaPrincipal(void *param) {
 	IPAddress_t ip; int res = 0;
 	char msg[50];
 	static const char* mensajes[] = {
@@ -174,11 +189,10 @@ static void ProgramaPrincipal(void *param)
 		"Esperando IP..."
 	};
 
-	/* Configuración del servidor WEB */
-	libMU_Internet_Server_SetPage( "/device.xml", (char*)device_descriptor, sizeof(device_descriptor) );  
-	libMU_Internet_Server_SetPage( "/services.xml", (char*)services_descriptor, sizeof(services_descriptor) );
-	libMU_Internet_Server_SetCommandProcessingInfo( "/service/power/control", Internet_Procesamiento_control );
-	libMU_Internet_Server_SetCommandProcessingInfo( "/service/power/eventSub", Internet_Procesamiento_eventSub );
+	/* Configuracion del servidor WEB */
+	libMU_Internet_Server_SetPage( "/device.xml", (char*)device_descriptor, sizeof(device_descriptor)-1 );  
+	libMU_Internet_Server_SetPage( "/services.xml", (char*)services_descriptor, sizeof(services_descriptor) -1 );
+	libMU_Internet_Server_SetCommandProcessingInfo( "/service/power/control.xml", Internet_Procesamiento_control );
 	
 	for(;;) {
 		switch( libMU_Internet_GetStatus() ) {
@@ -194,37 +208,7 @@ static void ProgramaPrincipal(void *param)
 							libMU_IP_1( ip ), libMU_IP_2( ip ), 
 							libMU_IP_3( ip ), libMU_IP_4( ip ) );
 				libMU_Display_DrawString( msg, 0, 0, 12 );
-//				ip = libMU_Internet_GetWiFiRouterIP();
-//				if( ip != 0 ) {
-//					snprintf( msg, sizeof(msg), "WF<%d.%d.%d.%d>    ",
-//								libMU_IP_1( ip ), libMU_IP_2( ip ), 
-//								libMU_IP_3( ip ), libMU_IP_4( ip ) );
-//					libMU_Display_DrawString( msg, 0, 0, 15 );
-//				}
-//				libMU_Internet_DNS_resolution( "www.worldtimeserver.com", &ip, 10000 );
-//				libMU_Display_DrawString( "worldtimeserver.com", 0, 8, 12 );
-//				snprintf( msg, sizeof(msg), "  <%d.%d.%d.%d>",
-//							libMU_IP_1( ip ), libMU_IP_2( ip ), 
-//							libMU_IP_3( ip ), libMU_IP_4( ip ) );
-//				libMU_Display_DrawString( msg, 0, 16, 15 );
-//				libMU_Internet_Delay( 1000 );
-//				res = libMU_Internet_GetPage ( 
-//							"http://www.worldtimeserver.com/mobile/mobile_time_in_ES.aspx?city=Madrid",
-//							Internet_ProcesamientoDePagina	/* Función llamada por cada trozo de página recibida */
-//						);
-//				if( !res ) {
-//					libMU_Display_DrawString( "Error de conexion", 0, 24, 15 );
-//					return;
-//				}
-//				libMU_Stopwatch_Start(&t);
-//				while( !libMU_Internet_IsPageReadingFinished() ) {
-//					snprintf( msg, sizeof(msg), "Bytes rcvd:% 6d", bytes_recibidos );
-//					libMU_Display_DrawString( msg, 0, 24, 15 );
-//					libMU_Internet_Delay( 100 );
-//				}
-//				snprintf( msg, sizeof(msg), "Hora = %d:%02d", hora, minutos );
-//				libMU_Display_DrawString( msg, 0, 32, 15 );
-//				
+
 				// Deja solo el servidor web en marcha
 				for(;;) {
 					libMU_Internet_Delay( 100 );
@@ -259,55 +243,11 @@ static void ProgramaPrincipal(void *param)
 }
 
 
-/**
- * Función para el tratamiento de formularios con metodo (GET/POST)
- * @param	cmd_param	Parametros del comando GET (empezando desde el caracter '?')
- * @param	len			Puntero a un entero donde se guarda la longitud de datos de la respuesta
- * @return				Puntero al texto con el que tiene que responder el servidor web
- * @note
- * - La longitud máxima del comando GET/POST es de 100 bytes
- * - Si se devuelve NULL el servidor no responde nada
- * @see libMU_Internet_Server_SetCommandProcessingInfo()
- */
 static char* Internet_Procesamiento_control( const char* cmd_param, int* len, char* name )
 {
 	char * found;
-	char params_copy[100];
 	
-	memcpy( params_copy, cmd_param, 21 ); 
-	params_copy[21] = 0;
-	libMU_Display_DrawString( params_copy, 0, 81, 10 );
-	
-	//length = *len;	
-	//memcpy(params_copy, cmd_param, length);
-	//libMU_Serial_SendString(cmd_param);
-	//libMU_Serial_SendString("\r\n");
-	//libMU_Serial_SendString(params_copy);
-	/* Debug info */
-
-	//libMU_Serial_SendString(cmd_param);
-	/* Incorrectly formated cmd_param */
-	//if( cmd_param == NULL || cmd_param[0] != '?' ) return NULL;
-
-	/* Process cmd_param (NOTE: Case is NOT ignored)*/
-/*	
-	POST /service/power/control HTTP/1.1
-	Content-Type: text/xml; charset="utf-8"
-	HOST: 172.17.100.131:4004
-	Content-Length: 304
-	SOAPACTION: "urn:schemas-upnp-org:service:power:1#SetPower"
-	Connection: close
-	
-	<?xml version="1.0" encoding="utf-8"?>
-	<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-		<s:Body>
-			<u:SetPower xmlns:u="urn:schemas-upnp-org:service:power:1">
-				<Power>0</Power>
-			</u:SetPower>
-		</s:Body>
-	</s:Envelope>
-*/	
-
+	if( cmd_param == NULL) return NULL;
 
 	/* Buscamos u:SetPower */
 	found = strstr(cmd_param,"u:SetPower");
@@ -316,89 +256,24 @@ static char* Internet_Procesamiento_control( const char* cmd_param, int* len, ch
 		found = strstr(found,"<Power>");
 		if(found){
 				found = found + 7;
-//				libMU_Serial_SendString("Set Encontrado: ");
-//				libMU_Serial_SendChar(found-1);
-//				libMU_Serial_SendChar(found);
-//				libMU_Serial_SendChar(found+1);
 				libMU_LED_Toggle(LED_1);
-				found[0] = '0';
+				if(power){
+					power = 0;
+				}else{
+					power = 1;
+				}
+				sprintf(response, response_set_power, power);
 		}
 	}
 
 	
-	/* Buscamos u:SetPower */
+	/* Buscamos u:GetPower */
 	found = strstr(cmd_param,"u:GetPower");
 	if(found){
-		/* Buscamos <Power> */
-		found = strstr(cmd_param,"<Power>");
-		if(found){
-				found = found + 5;
-//				libMU_Serial_SendString("Get Encontrado: ");
-//				libMU_Serial_SendChar(found-1);
-//				libMU_Serial_SendChar(found);
-//				libMU_Serial_SendChar(found+1);
-		}	
+		sprintf(response, response_get_power, power);
 	}
 
-	*len = strlen(cmd_param);
-	return (char*)cmd_param;
+	*len = strlen(response);
+	return (char*)response;
 }
 
-/**
- * Función para el tratamiento de formularios con metodo (GET/POST)
- * @param	cmd_param	Parametros del comando GET (empezando desde el caracter '?')
- * @param	len			Puntero a un entero donde se guarda la longitud de datos de la respuesta
- * @return				Puntero al texto con el que tiene que responder el servidor web
- * @note
- * - La longitud máxima del comando GET/POST es de 100 bytes
- * - Si se devuelve NULL el servidor no responde nada
- * @see libMU_Internet_Server_SetCommandProcessingInfo()
- */
-static char* Internet_Procesamiento_eventSub( const char* cmd_param, int* len, char* name )
-{
-	/* Incorrectly formated cmd_param */
-	if( cmd_param == NULL ) return NULL;
-
-	*len = sizeof(services_descriptor);
-	return (char*)services_descriptor;
-}
-
-
-
-/**
- * Función para el tratamiento de datos descargados de Internet.
- * @param	data	Puntero a los datos descargados
- * @param	len		Tamaño de los datos descargados
- * @note
- * Debido a limitaciones de memoria, la página descargada no se almacena y hay
- * que procesarla según llegan los datos.
- * Esta función se llama varias veces por cada página excepto para aquellas
- * páginas que tengan un tamaño menor de 1kB (aprox.).
- * @see libMU_Internet_GetPage()
- */
-static void Internet_ProcesamientoDePagina( char* data, unsigned short int len ) 
-{
-	bytes_recibidos += len;
-	data[len-1] = 0;
-	
-	// Find specific string in the received packet
-	char *loc = strstr(data, "\"font7\"" );
-	if( loc == NULL ) return;
-	
-	loc += 7; char *end = data + len;
-	// Skip everything until we find digits
-	while( !isdigit( *loc ) && loc < end ) loc++;
-	// Convert hours to number
-	hora = atoi( loc );
-	// Skip digits 
-	loc++; while( isdigit( *loc ) && loc < end ) loc++;
-	// check if ':' present
-	if( loc[0] != ':' ) { hora = 0; return; } 
-	loc++;
-	// Convert minutes to number
-	minutos = atoi( loc );
-}
-
-/**
- * @}
- */

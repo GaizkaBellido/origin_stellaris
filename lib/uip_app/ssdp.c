@@ -25,6 +25,7 @@ void ssdp_udpinit()
   	}
 	
 	Contador_Envio_SSDP = 0;
+	
 	return;
 }
 
@@ -35,19 +36,19 @@ void ssdp_udpapp()
 	if(uip_newdata()) {
 		//libMU_Serial_SendString("Evento uip_newdata()\n");
 		ssdp = (char*) uip_appdata;
-		if(strncmp(ssdp, "M-SEARCH *", 10) == 0) {
-			libMU_Display_DrawString("uip_newdata():M-SEARCH *",10,10,15);
+		if(strncmp(ssdp, "M-SEARCH", 8) == 0) {
+			libMU_Display_DrawString("M-SEARCH *",10,10,15);
 			ssdp_advertise();
 		}
 	}
 	if( uip_poll() ) {
 		//libMU_Serial_SendString("Evento uip_poll()\n");
-		ssdp_advertise();
-		/*Contador_Envio_SSDP++;	// Cada 500ms
-		if( Contador_Envio_SSDP >= 2 ) {
+		//ssdp_advertise();
+		Contador_Envio_SSDP++;	// Cada 500ms
+		if( Contador_Envio_SSDP == 20 ) {
 			Contador_Envio_SSDP = 0;
 			ssdp_advertise();
-		}*/
+		}
 	}
 }
 

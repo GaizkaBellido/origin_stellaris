@@ -69,7 +69,7 @@ void	libMU_LED_Off(libMU_LED_Identifiers_t led)
 void	libMU_LED_Toggle(libMU_LED_Identifiers_t led)
 {
     GPIOPinWrite( GPIO_PORTF_BASE, (unsigned char)led,
-    		GPIOPinRead( GPIO_PORTF_BASE, (unsigned char)led ) ^ led );
+    GPIOPinRead( GPIO_PORTF_BASE, (unsigned char)led ) ^ led );
 }
 
 /**

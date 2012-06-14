@@ -15,6 +15,7 @@ extern const char http_index_html[12];
 extern const char http_404_html[10];
 extern const char http_referer[9];
 extern const char http_header_200[84];
+extern const char http_header_200_no_close[65];
 extern const char http_header_404[91];
 extern const char http_content_length[16];
 extern const char http_content_type_plain[29];

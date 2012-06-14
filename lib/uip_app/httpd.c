@@ -80,6 +80,8 @@
 #define ISO_slash   0x2f
 #define ISO_colon   0x3a
 
+const char content_length_str[] = "Content-Length: %d\r\n";
+
 char			httpd_script_param[HTTPD_SCRIPT_SIZE];
 unsigned int 	httpd_script_num_data;
 
@@ -190,14 +192,18 @@ PT_THREAD(handle_script(struct httpd_state *s))
 #endif
 /*---------------------------------------------------------------------------*/
 static
-PT_THREAD(send_headers(struct httpd_state *s, const char *statushdr))
+PT_THREAD(send_headers(struct httpd_state *s, const char *statushdr, int len))
 {
 	char *ptr;
+	char tmp_str_length[24];
 
 	PSOCK_BEGIN(&s->sout);
 
 	PSOCK_SEND_STR(&s->sout, statushdr);
-
+	if(len != -1){
+		sprintf(tmp_str_length, content_length_str, len);
+		PSOCK_SEND_STR(&s->sout, tmp_str_length);
+	}
 	ptr = strrchr(s->filename, ISO_period);
 	if(ptr == NULL) {
 		PSOCK_SEND_STR(&s->sout, http_content_type_binary);
@@ -216,6 +222,7 @@ PT_THREAD(send_headers(struct httpd_state *s, const char *statushdr))
 	} else {
 		PSOCK_SEND_STR(&s->sout, http_content_type_plain);
 	}
+
 	PSOCK_END(&s->sout);
 }
 /*---------------------------------------------------------------------------*/
@@ -231,13 +238,20 @@ PT_THREAD(handle_output(struct httpd_state *s))
 		strcpy(s->filename, http_404_html);
 		PT_WAIT_THREAD(&s->outputpt,
 			send_headers(s,
-			http_header_404));
+			http_header_404, -1));
 //		PT_WAIT_THREAD(&s->outputpt,
 //			send_file(s));
 	} else {
-		PT_WAIT_THREAD(&s->outputpt,
+		if(s->ispost){
+			
+			PT_WAIT_THREAD(&s->outputpt,
 			send_headers(s,
-			http_header_200));
+			http_header_200_no_close, s->file.len+1));
+		}else{
+			PT_WAIT_THREAD(&s->outputpt,
+			send_headers(s,
+			http_header_200, -1));
+		}
 //		ptr = strchr(s->filename, ISO_period);
 //		if(ptr != NULL && strncmp(ptr, http_shtml, 6) == 0) {
 //			PT_INIT(&s->scriptpt);
@@ -324,6 +338,7 @@ PT_THREAD(handle_input(struct httpd_state *s))
 			if( s->count == 0 && strncmp(s->inputbuf, http_content_length, sizeof(http_content_length)-1 ) == 0) {
 				s->count = atoi( s->inputbuf + sizeof(http_content_length) - 1 );
 				s->state_post = STATE_POST;
+				s->ispost = 1;
 				s->state = STATE_WAITING;
 				httpd_script_num_data = 0;
 				strcpy(httpd_script_param, "@0" );
